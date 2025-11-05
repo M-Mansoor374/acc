@@ -28,12 +28,15 @@ const DashboardStats = memo(() => {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-2xl font-semibold text-gray-800 mb-6 font-['Poppins',_'Inter',_sans-serif]"
+        className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3"
       >
-        Your Progress Overview
+        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
+          <span className="text-white text-lg">📊</span>
+        </div>
+        <span>Your Progress Overview</span>
       </motion.h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
         {/* XP Points Card */}
         <StatCard
           icon={
