@@ -16,7 +16,7 @@ import {
   HiArrowRight,
   HiChartBar
 } from 'react-icons/hi';
-import Header from '../components/Header';
+import Header from '../login/Header';
 import DashboardStats from '../components/DashboardStats/DashboardStats';
 import QuickLinkCard from '../components/QuickLinkCard';
 import ActivityItem from '../components/ActivityItem';

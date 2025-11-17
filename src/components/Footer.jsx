@@ -9,9 +9,12 @@ import {
 import { SiDiscord } from 'react-icons/si';
 import { HiStar } from 'react-icons/hi';
 
-const Footer = memo(() => {
+const Footer = memo(({ compact = false }) => {
+  const mainPadding = compact ? 'py-8 sm:py-10' : 'py-12 sm:py-16';
+  const bottomPadding = compact ? 'border-t border-gray-700/50 pt-4 pb-5 sm:pb-6' : 'border-t border-gray-700/50 pt-6 pb-6 sm:pb-8';
+
   const productLinks = [
-    { name: 'Features', path: '/' },
+    { name: 'Features', path: '/features' },
     { name: 'Dashboard', path: '/dashboard' },
     { name: 'Quiz', path: '/quiz' },
     { name: 'Rewards', path: '/rewards' },
@@ -100,10 +103,10 @@ const Footer = memo(() => {
 
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Main Footer Content */}
-        <div className="py-12 sm:py-16">
+        <div className={mainPadding}>
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
             {/* Brand Section - Left */}
-            <div className="lg:col-span-2 flex flex-col space-y-4">
+            <div className="lg:col-span-2 flex flex-col space-y-4 items-start text-left">
               {/* Logo and Brand Name */}
               <div className="flex items-center gap-3">
                 <motion.div
@@ -125,12 +128,12 @@ const Footer = memo(() => {
               </div>
 
               {/* Tagline */}
-              <h3 className="text-lg sm:text-xl font-bold text-white">
+              <h3 className="text-lg sm:text-xl font-bold text-white text-left">
                 Gamify Your Learning Journey
               </h3>
 
               {/* Description */}
-              <p className="text-sm sm:text-base text-gray-400 leading-relaxed max-w-md">
+              <p className="text-sm sm:text-base text-gray-400 leading-relaxed max-w-md text-left">
                 Transforming education through gamification, real-time progress tracking, and rewarding achievements. Join the future of learning today.
               </p>
 
@@ -175,7 +178,7 @@ const Footer = memo(() => {
         </div>
 
         {/* Bottom Copyright Section */}
-        <div className="border-t border-gray-700/50 pt-6 pb-6 sm:pb-8">
+        <div className={bottomPadding}>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-400">
             <p className="text-center sm:text-left">
               © {new Date().getFullYear()} Acceptopia. All rights reserved.{' '}
