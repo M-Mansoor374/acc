@@ -284,7 +284,7 @@ const AdminDashboardComponent = () => {
         />
       </div>
 
-      {/* Sidebar */}
+      {/* Sidebar - Desktop Only */}
       <motion.aside
         initial={false}
         animate={{ width: isSidebarOpen ? '280px' : '80px' }}
@@ -370,13 +370,13 @@ const AdminDashboardComponent = () => {
       <div className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'lg:ml-[280px]' : 'lg:ml-[80px]'}`}>
         {/* Top Header */}
         <header className="sticky top-0 z-30 bg-white/10 backdrop-blur-xl border-b border-white/20 shadow-2xl">
-          <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex items-center gap-4">
+          <div className="flex items-center justify-between px-3 sm:px-4 lg:px-8 py-3 sm:py-4">
+            <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 rounded-lg bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white"
+                className="lg:hidden flex-shrink-0 p-2.5 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-sm border-2 border-white/30 text-white shadow-lg"
                 aria-label="Toggle menu"
               >
                 {isMobileMenuOpen ? <HiX className="w-6 h-6" /> : <HiMenu className="w-6 h-6" />}
@@ -384,27 +384,27 @@ const AdminDashboardComponent = () => {
               <motion.h1
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+                className="text-base sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent truncate"
               >
                 {adminNavItems.find((item) => item.id === activeModule)?.label || 'Admin Dashboard'}
               </motion.h1>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
               <div className="relative" ref={notificationRef}>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setIsNotificationOpen(!isNotificationOpen)}
-                  className="relative p-2 rounded-lg bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-colors"
+                  className="relative p-2 sm:p-2.5 rounded-lg bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-colors"
                   aria-label="Notifications"
                 >
-                  <HiBell className="w-5 h-5 text-white" />
+                  <HiBell className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   {unreadCount > 0 && (
                     <motion.span
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="absolute top-1 right-1 min-w-[18px] h-[18px] bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-semibold px-1"
+                      className="absolute top-0.5 right-0.5 sm:top-1 sm:right-1 min-w-[18px] h-[18px] bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-semibold px-1"
                     >
                       {unreadCount > 9 ? '9+' : unreadCount}
                     </motion.span>
@@ -517,18 +517,20 @@ const AdminDashboardComponent = () => {
                   )}
                 </AnimatePresence>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="hidden sm:block text-right">
-                  <p className="text-sm font-semibold text-white">{adminName}</p>
-                  <p className="text-xs text-white/60">Administrator</p>
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="text-right">
+                  <p className="text-xs sm:text-sm font-semibold text-white truncate max-w-[100px] sm:max-w-none">{adminName}</p>
+                  <p className="text-[10px] sm:text-xs text-white/60 hidden sm:block">Administrator</p>
                 </div>
-                <motion.div
+                <motion.button
                   whileHover={{ scale: 1.1, rotate: 360 }}
+                  whileTap={{ scale: 0.9 }}
                   transition={{ duration: 0.5 }}
-                  className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center text-white font-semibold shadow-lg shadow-purple-500/50 border-2 border-white/30"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center text-white font-semibold shadow-lg shadow-purple-500/50 border-2 border-white/30 flex-shrink-0"
+                  aria-label="Profile"
                 >
                   {adminName.charAt(0).toUpperCase()}
-                </motion.div>
+                </motion.button>
               </div>
             </div>
           </div>
@@ -569,40 +571,65 @@ const AdminDashboardComponent = () => {
                     <HiX className="w-5 h-5" />
                   </button>
                 </div>
-                <nav className="flex flex-col h-full p-4 overflow-y-auto">
-                  <div className="flex-1 space-y-2 mb-4">
-                    {guestNavLinks.map((link, index) => (
-                      link.hash ? (
-                        <motion.button
-                          key={link.id}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.05 }}
-                          onClick={() => handleGuestLinkClick(link)}
-                          className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all text-left"
-                        >
-                          <span className="font-semibold">{link.label}</span>
-                        </motion.button>
-                      ) : (
-                        <Link
-                          key={link.id}
-                          to={link.path}
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          <motion.button
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: index * 0.05 }}
-                            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all"
-                          >
-                            <span className="font-semibold">{link.label}</span>
-                          </motion.button>
-                        </Link>
-                      )
-                    ))}
+                <nav className="flex flex-col h-full min-h-0">
+                  <div className="flex-1 overflow-y-auto p-4 space-y-3">
+                    <motion.button
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.05 }}
+                      onClick={() => handleGuestLinkClick(guestNavLinks[0])}
+                      className="w-full flex items-center px-4 py-3.5 rounded-xl bg-white/5 hover:bg-white/15 border border-white/20 text-white font-semibold text-base transition-all"
+                    >
+                      <span>Home</span>
+                    </motion.button>
+                    
+                    <motion.button
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 }}
+                      onClick={() => handleGuestLinkClick(guestNavLinks[1])}
+                      className="w-full flex items-center px-4 py-3.5 rounded-xl bg-white/5 hover:bg-white/15 border border-white/20 text-white font-semibold text-base transition-all"
+                    >
+                      <span>Features / Explore</span>
+                    </motion.button>
+                    
+                    <Link
+                      to="/resources"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="w-full"
+                    >
+                      <motion.button
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.15 }}
+                        className="w-full flex items-center px-4 py-3.5 rounded-xl bg-white/5 hover:bg-white/15 border border-white/20 text-white font-semibold text-base transition-all"
+                      >
+                        <span>Resources</span>
+                      </motion.button>
+                    </Link>
+                    
+                    <motion.button
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.2 }}
+                      onClick={() => handleGuestLinkClick(guestNavLinks[3])}
+                      className="w-full flex items-center px-4 py-3.5 rounded-xl bg-white/5 hover:bg-white/15 border border-white/20 text-white font-semibold text-base transition-all"
+                    >
+                      <span>About</span>
+                    </motion.button>
+                    
+                    <motion.button
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.25 }}
+                      onClick={() => handleGuestLinkClick(guestNavLinks[4])}
+                      className="w-full flex items-center px-4 py-3.5 rounded-xl bg-white/5 hover:bg-white/15 border border-white/20 text-white font-semibold text-base transition-all"
+                    >
+                      <span>Contact / Support</span>
+                    </motion.button>
                   </div>
                   
-                  <div className="pt-4 border-t border-white/20 space-y-2 mt-auto">
+                  <div className="p-4 border-t border-white/20 bg-slate-800/50">
                     <motion.button
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -613,7 +640,7 @@ const AdminDashboardComponent = () => {
                         setIsMobileMenuOpen(false);
                         navigate('/portal');
                       }}
-                      className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 px-4 py-3 text-white font-semibold shadow-lg shadow-purple-500/50 transition-all"
+                      className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 px-4 py-3.5 text-white font-semibold text-base shadow-lg shadow-purple-500/50 transition-all"
                     >
                       <HiOutlineUserAdd className="w-5 h-5" />
                       <span>Portal</span>

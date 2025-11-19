@@ -196,33 +196,36 @@ const GuestHeaderComponent = () => {
             ))}
           </div>
 
-          <div className="hidden flex-none items-center pl-2 sm:pl-4 lg:flex">
+          <div className="flex flex-none items-center gap-2 sm:gap-3 pl-2 sm:pl-4">
+            {/* Portal Button - Always Visible */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate('/portal')}
-              className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-gradient-to-r from-sky-500 via-indigo-500 to-blue-600 px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-sky-300/40 transition-transform duration-200 hover:scale-[1.04] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 focus:ring-offset-white"
+              className="inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-full bg-gradient-to-r from-sky-500 via-indigo-500 to-blue-600 px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-sky-300/40 transition-transform duration-200 hover:scale-[1.04] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-sky-300 focus:ring-offset-2 focus:ring-offset-white min-w-[40px] sm:min-w-auto"
+              aria-label="Portal / Login"
             >
-              <HiOutlineUserAdd className="h-4 w-4 sm:h-5 sm:w-5" />
-              <span className="whitespace-nowrap">Portal</span>
+              <HiOutlineUserAdd className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
+              <span className="whitespace-nowrap hidden sm:inline">Portal</span>
             </motion.button>
-          </div>
 
-          <button
-            onClick={toggleMobileMenu}
-            className="inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-sky-200 bg-white text-sky-600 transition hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-white lg:hidden"
-            aria-label="Toggle mobile menu"
-            aria-expanded={isMobileMenuOpen}
-          >
-            {isMobileMenuOpen ? <HiX className="h-5 w-5 sm:h-6 sm:w-6" /> : <HiMenu className="h-5 w-5 sm:h-6 sm:w-6" />}
-          </button>
+            {/* Hamburger Menu Button - Mobile Only */}
+            <button
+              onClick={toggleMobileMenu}
+              className="inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border-2 border-sky-300 bg-white text-sky-600 transition hover:bg-sky-50 hover:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-white lg:hidden flex-shrink-0 shadow-md"
+              aria-label="Toggle mobile menu"
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? <HiX className="h-5 w-5 sm:h-6 sm:w-6" /> : <HiMenu className="h-5 w-5 sm:h-6 sm:w-6" />}
+            </button>
+          </div>
         </div>
 
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
               key="guest-mobile-nav"
-              className="fixed inset-0 z-[60] lg:hidden"
+              className="fixed inset-0 z-[100] lg:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -282,60 +285,103 @@ const GuestHeaderComponent = () => {
                   </button>
                 </div>
 
-                <div className="flex flex-1 flex-col gap-6 px-5 py-6">
-                  <div className="flex flex-col divide-y divide-sky-100 rounded-2xl border border-sky-100 bg-white">
-                    {guestNavLinks.map((link, index) => (
-                      link.hash ? (
-                        <motion.div
-                          key={link.id}
+                <div className="flex flex-1 flex-col min-h-0">
+                  <div className="flex-1 overflow-y-auto px-5 py-6">
+                    <div className="flex flex-col gap-3">
+                      <motion.button
+                        initial={{ opacity: 0, x: 24 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.05 }}
+                        onClick={() => handleLinkClick(guestNavLinks[0])}
+                        className={`w-full flex items-center justify-between gap-2 px-4 py-4 rounded-xl text-base font-semibold transition-colors duration-150 border-2 ${
+                          activeLink === 'Home' 
+                            ? 'bg-sky-50 text-sky-700 border-sky-300 shadow-md' 
+                            : 'bg-white text-slate-700 border-sky-200 hover:bg-sky-50 hover:text-sky-600 hover:border-sky-300'
+                        }`}
+                      >
+                        <span>Home</span>
+                        <span className={`h-2.5 w-2.5 rounded-full ${activeLink === 'Home' ? 'bg-sky-500' : 'bg-sky-100'}`} />
+                      </motion.button>
+
+                      <motion.button
+                        initial={{ opacity: 0, x: 24 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.1 }}
+                        onClick={() => handleLinkClick(guestNavLinks[1])}
+                        className={`w-full flex items-center justify-between gap-2 px-4 py-4 rounded-xl text-base font-semibold transition-colors duration-150 border-2 ${
+                          activeLink === 'Features / Explore' 
+                            ? 'bg-sky-50 text-sky-700 border-sky-300 shadow-md' 
+                            : 'bg-white text-slate-700 border-sky-200 hover:bg-sky-50 hover:text-sky-600 hover:border-sky-300'
+                        }`}
+                      >
+                        <span>Features / Explore</span>
+                        <span className={`h-2.5 w-2.5 rounded-full ${activeLink === 'Features / Explore' ? 'bg-sky-500' : 'bg-sky-100'}`} />
+                      </motion.button>
+
+                      <Link to="/resources" onClick={() => setIsMobileMenuOpen(false)} className="w-full">
+                        <motion.button
                           initial={{ opacity: 0, x: 24 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.05 }}
-                          onClick={() => handleLinkClick(link)}
-                          className={`flex items-center justify-between gap-2 px-5 py-3 text-sm font-semibold transition-colors duration-150 cursor-pointer ${
-                            activeLink === link.label ? 'text-sky-600' : 'text-slate-500 hover:text-sky-600'
+                          transition={{ delay: 0.15 }}
+                          className={`w-full flex items-center justify-between gap-2 px-4 py-4 rounded-xl text-base font-semibold transition-colors duration-150 border-2 ${
+                            activeLink === 'Resources' 
+                              ? 'bg-sky-50 text-sky-700 border-sky-300 shadow-md' 
+                              : 'bg-white text-slate-700 border-sky-200 hover:bg-sky-50 hover:text-sky-600 hover:border-sky-300'
                           }`}
                         >
-                          <span>{link.label}</span>
-                          <span
-                            className={`h-2 w-2 rounded-full transition ${
-                              activeLink === link.label ? 'bg-sky-500' : 'bg-sky-100'
-                            }`}
-                          />
-                        </motion.div>
-                      ) : (
-                        <Link key={link.id} to={link.path} onClick={() => setIsMobileMenuOpen(false)}>
-                          <motion.div
-                            initial={{ opacity: 0, x: 24 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: index * 0.05 }}
-                            className={`flex items-center justify-between gap-2 px-5 py-3 text-sm font-semibold transition-colors duration-150 ${
-                              activeLink === link.label ? 'text-sky-600' : 'text-slate-500 hover:text-sky-600'
-                            }`}
-                          >
-                            <span>{link.label}</span>
-                            <span
-                              className={`h-2 w-2 rounded-full transition ${
-                                activeLink === link.label ? 'bg-sky-500' : 'bg-sky-100'
-                              }`}
-                            />
-                          </motion.div>
-                        </Link>
-                      )
-                    ))}
+                          <span>Resources</span>
+                          <span className={`h-2.5 w-2.5 rounded-full ${activeLink === 'Resources' ? 'bg-sky-500' : 'bg-sky-100'}`} />
+                        </motion.button>
+                      </Link>
+
+                      <motion.button
+                        initial={{ opacity: 0, x: 24 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.2 }}
+                        onClick={() => handleLinkClick(guestNavLinks[3])}
+                        className={`w-full flex items-center justify-between gap-2 px-4 py-4 rounded-xl text-base font-semibold transition-colors duration-150 border-2 ${
+                          activeLink === 'About' 
+                            ? 'bg-sky-50 text-sky-700 border-sky-300 shadow-md' 
+                            : 'bg-white text-slate-700 border-sky-200 hover:bg-sky-50 hover:text-sky-600 hover:border-sky-300'
+                        }`}
+                      >
+                        <span>About</span>
+                        <span className={`h-2.5 w-2.5 rounded-full ${activeLink === 'About' ? 'bg-sky-500' : 'bg-sky-100'}`} />
+                      </motion.button>
+
+                      <motion.button
+                        initial={{ opacity: 0, x: 24 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.25 }}
+                        onClick={() => handleLinkClick(guestNavLinks[4])}
+                        className={`w-full flex items-center justify-between gap-2 px-4 py-4 rounded-xl text-base font-semibold transition-colors duration-150 border-2 ${
+                          activeLink === 'Contact / Support' 
+                            ? 'bg-sky-50 text-sky-700 border-sky-300 shadow-md' 
+                            : 'bg-white text-slate-700 border-sky-200 hover:bg-sky-50 hover:text-sky-600 hover:border-sky-300'
+                        }`}
+                      >
+                        <span>Contact / Support</span>
+                        <span className={`h-2.5 w-2.5 rounded-full ${activeLink === 'Contact / Support' ? 'bg-sky-500' : 'bg-sky-100'}`} />
+                      </motion.button>
+                    </div>
                   </div>
 
-                  <motion.button
-                    whileTap={{ scale: 0.97 }}
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      navigate('/portal');
-                    }}
-                    className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-sky-500 via-indigo-500 to-blue-600 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-sky-300/40 transition hover:shadow-xl"
-                  >
-                    <HiOutlineUserAdd className="h-5 w-5" />
-                    Portal
-                  </motion.button>
+                  <div className="p-5 border-t border-sky-200 bg-sky-50/50">
+                    <motion.button
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      whileTap={{ scale: 0.97 }}
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        navigate('/portal');
+                      }}
+                      className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-sky-500 via-indigo-500 to-blue-600 px-5 py-4 text-base font-semibold uppercase tracking-wide text-white shadow-lg shadow-sky-300/40 transition hover:shadow-xl hover:scale-[1.02]"
+                    >
+                      <HiOutlineUserAdd className="h-5 w-5" />
+                      <span>Portal / Login</span>
+                    </motion.button>
+                  </div>
                 </div>
               </motion.aside>
             </motion.div>
