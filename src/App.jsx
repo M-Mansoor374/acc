@@ -1,49 +1,20 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './pages/Homepage';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/user/Dashboard';
 import { QuizPage } from './pages/QuizPage';
 import { ResourcesPage } from './pages/ResourcesPage';
-import { FeaturesExplorePage } from './pages/FeaturesExplorePage';
-import { ProfilePage } from './pages/ProfilePage';
+import { Profile } from './pages/user/Profile';
 import { PortalPage } from './pages/PortalPage';
 import { SignupPage } from './pages/SignupPage';
-import { SimulationPage } from './pages/SimulationPage';
-import PropTypes from 'prop-types';
-const PrivateRoute = ({ children }) => {
-  const isAuthenticated = typeof window !== 'undefined' && sessionStorage.getItem('acceptopia-authenticated') === 'true';
-  if (!isAuthenticated) {
-    return <Navigate to="/portal" replace />;
-  }
-  return children;
-};
-
-PrivateRoute.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-
-const ScrollToHash = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    if (location.hash) {
-      const element = document.getElementById(location.hash.slice(1));
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }, [location.hash, location.pathname]);
-
-  return null;
-};
+import { Simulation } from './pages/user/Simulation';
+import AdminDashboard from './pages/admin/Dashboard';
+import AdminRoute from './components/AdminRoute';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
     <Router>
-      <ScrollToHash />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/portal" element={<PortalPage />} />
@@ -51,44 +22,59 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            <PrivateRoute>
+            <ProtectedRoute>
               <Dashboard />
-            </PrivateRoute>
+            </ProtectedRoute>
           }
         />
         <Route
           path="/quiz"
           element={
-            <PrivateRoute>
+            <ProtectedRoute>
               <QuizPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/simulation"
-          element={
-            <PrivateRoute>
-              <SimulationPage />
-            </PrivateRoute>
+            </ProtectedRoute>
           }
         />
         <Route
           path="/profile"
           element={
-            <PrivateRoute>
-              <ProfilePage />
-            </PrivateRoute>
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
           }
         />
         <Route
           path="/resources"
           element={
-            <PrivateRoute>
+            <ProtectedRoute>
               <ResourcesPage />
-            </PrivateRoute>
+            </ProtectedRoute>
           }
         />
-        <Route path="/features" element={<FeaturesExplorePage />} />
+        <Route
+          path="/simulation"
+          element={
+            <ProtectedRoute>
+              <Simulation />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/simulation/:simulationId"
+          element={
+            <ProtectedRoute>
+              <Simulation />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          }
+        />
       </Routes>
     </Router>
   );

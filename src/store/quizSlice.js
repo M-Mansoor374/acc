@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSelector } from 'reselect';
 import { quizQuestions } from '../data/quizQuestions';
 
 export const fetchQuizQuestions = createAsyncThunk(
@@ -118,13 +119,13 @@ export const selectCurrentQuestion = (state) => {
   const quizState = selectQuizState(state);
   return quizState.questions[quizState.currentIndex];
 };
-export const selectQuestionProgress = (state) => {
-  const quizState = selectQuizState(state);
-  return {
+export const selectQuestionProgress = createSelector(
+  [selectQuizState],
+  (quizState) => ({
     current: quizState.currentIndex + 1,
     total: quizState.questions.length,
-  };
-};
+  })
+);
 export const selectResponseByQuestionId = (questionId) => (state) =>
   selectQuizState(state).responses[questionId];
 export const selectCanNavigateNext = (state) => {

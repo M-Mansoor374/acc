@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
+import { HiShieldCheck } from 'react-icons/hi';
 import Header from '../guest/Header';
 
 const inputBaseClasses =
@@ -8,12 +9,17 @@ const inputBaseClasses =
 
 const PortalPageComponent = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [credentials, setCredentials] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isFlipping, setIsFlipping] = useState(false);
+  const [isAdminLogin, setIsAdminLogin] = useState(false);
   const flipTimeoutRef = useRef(null);
+  
+  // Get the redirect path from location state (if user was redirected here)
+  const from = location.state?.from?.pathname || '/dashboard';
 
   const handleChange = useCallback((event) => {
     const { name, value } = event.target;
@@ -33,21 +39,41 @@ const PortalPageComponent = () => {
         setError('Please enter both username and password.');
         return;
       }
+      
       setIsSubmitting(true);
-      window.setTimeout(() => {
-        sessionStorage.setItem('acceptopia-authenticated', 'true');
-        setIsSubmitting(false);
-        navigate('/dashboard', { replace: true });
-      }, 700);
+      
+      // Check if admin login is enabled
+      if (isAdminLogin) {
+        // For testing: Accept any credentials when admin toggle is on
+        // TODO: Replace with proper backend authentication in production
+        window.setTimeout(() => {
+          sessionStorage.setItem('acceptopia-authenticated', 'true');
+          sessionStorage.setItem('acceptopia-role', 'admin');
+          setIsSubmitting(false);
+          // Redirect to admin dashboard
+          navigate('/admin', { replace: true });
+        }, 700);
+      } else {
+        // Regular user login
+        window.setTimeout(() => {
+          sessionStorage.setItem('acceptopia-authenticated', 'true');
+          // Ensure role is not admin for regular users
+          sessionStorage.removeItem('acceptopia-role');
+          setIsSubmitting(false);
+          // Redirect to the page they were trying to access, or dashboard by default
+          navigate(from, { replace: true });
+        }, 700);
+      }
     },
-    [isDisabled, navigate],
+    [isDisabled, navigate, from, isAdminLogin, credentials],
   );
 
   useEffect(() => {
     if (sessionStorage.getItem('acceptopia-authenticated') === 'true') {
-      navigate('/dashboard', { replace: true });
+      // If already authenticated, redirect to the page they were trying to access, or dashboard
+      navigate(from, { replace: true });
     }
-  }, [navigate]);
+  }, [navigate, from]);
   const togglePasswordVisibility = useCallback(() => {
     setIsPasswordVisible((prev) => !prev);
   }, []);
@@ -158,6 +184,29 @@ const PortalPageComponent = () => {
                       </div>
                     </div>
                   </div>
+                  
+                  {/* Admin Login Toggle */}
+                  <div className="flex items-center gap-3 rounded-xl border border-indigo-200/50 bg-gradient-to-r from-indigo-50/50 via-purple-50/50 to-pink-50/50 p-4 shadow-sm">
+                    <label className="flex items-center gap-3 cursor-pointer group" htmlFor="admin-login">
+                      <div className="relative">
+                        <input
+                          id="admin-login"
+                          type="checkbox"
+                          checked={isAdminLogin}
+                          onChange={(e) => setIsAdminLogin(e.target.checked)}
+                          className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-indigo-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-gradient-to-r peer-checked:from-indigo-500 peer-checked:to-purple-500"></div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <HiShieldCheck className={`w-5 h-5 transition-colors ${isAdminLogin ? 'text-indigo-600' : 'text-gray-400'}`} />
+                        <span className={`text-sm font-semibold transition-colors ${isAdminLogin ? 'text-indigo-700' : 'text-gray-600'}`}>
+                          Login as Administrator
+                        </span>
+                      </div>
+                    </label>
+                  </div>
+                  
                   {error && (
                     <p className="rounded-2xl border border-rose-200 bg-rose-50 px-3 py-2 text-xs font-semibold text-rose-500">
                       {error}
@@ -166,9 +215,20 @@ const PortalPageComponent = () => {
                   <button
                     type="submit"
                     disabled={isDisabled}
-                    className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-sky-500 via-indigo-500 to-purple-500 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-indigo-400/40 transition hover:scale-[1.01] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400 disabled:cursor-not-allowed disabled:opacity-60"
+                    className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-lg transition hover:scale-[1.01] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-60 ${
+                      isAdminLogin
+                        ? 'bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-purple-400/40 focus-visible:outline-purple-400'
+                        : 'bg-gradient-to-r from-sky-500 via-indigo-500 to-purple-500 shadow-indigo-400/40 focus-visible:outline-sky-400'
+                    }`}
                   >
-                    {isSubmitting ? 'Signing In…' : 'Log In'}
+                    {isSubmitting ? (
+                      'Signing In…'
+                    ) : (
+                      <>
+                        {isAdminLogin && <HiShieldCheck className="w-4 h-4" />}
+                        {isAdminLogin ? 'Login as Admin' : 'Log In'}
+                      </>
+                    )}
                   </button>
                 </form>
                 <div className="flex flex-col items-center gap-4">

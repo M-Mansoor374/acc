@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import Header from '../login/Header';
-import Footer from '../components/Footer';
-import { ProfileHero } from '../components/profile/ProfileHero';
-import { ProfileForm } from '../components/profile/ProfileForm';
-import { GamificationSummary } from '../components/profile/GamificationSummary';
+import Header from '../../login/Header';
+import Footer from '../../components/Footer';
+import { ProfileHero } from '../../components/profile/ProfileHero';
+import { ProfileForm } from '../../components/profile/ProfileForm';
+import { GamificationSummary } from '../../components/profile/GamificationSummary';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -282,6 +282,6 @@ const ProfilePageComponent = () => {
   );
 };
 
-export const ProfilePage = memo(ProfilePageComponent);
+export const Profile = memo(ProfilePageComponent);
 
 

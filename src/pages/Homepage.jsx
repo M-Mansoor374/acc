@@ -651,7 +651,7 @@ const supportHighlights = [
                           whileHover={{ x: 5 }}
                           className="mt-auto flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-purple-600 transition-colors duration-300 group-hover:text-purple-700"
                         >
-                          Learn More
+                        Learn More
                           <motion.div
                             animate={{ x: [0, 4, 0] }}
                             transition={{ 
@@ -699,7 +699,7 @@ const supportHighlights = [
                       background: 'linear-gradient(135deg, #8b5cf6, #a855f7, #d946ef, #ec4899, #f59e0b, #8b5cf6)',
                       backgroundSize: '300% 300%',
                     }}
-                  >
+                >
                     <div className="relative flex flex-col items-center gap-4 rounded-[28px] bg-gradient-to-br from-white via-purple-50/30 to-pink-50/30 px-6 py-10 text-center sm:px-10 sm:py-12 backdrop-blur-sm border border-white/50">
                       {/* Floating Sparkles */}
                       <div className="absolute inset-0 overflow-hidden rounded-[28px] pointer-events-none">
@@ -732,16 +732,16 @@ const supportHighlights = [
                         className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-100 via-purple-100 to-fuchsia-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.32em] text-purple-700 shadow-md border border-purple-200/50 relative z-10"
                       >
                         <HiSparkles className="w-3 h-3 text-amber-500" />
-                        Feature Spotlight
+                      Feature Spotlight
                       </motion.span>
                       <h3 className={`text-2xl sm:text-3xl font-semibold bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 bg-clip-text text-transparent relative z-10 ${headingFont}`}>
-                        Unlock themed seasons, streak boosters, and mentor-led quests
-                      </h3>
+                      Unlock themed seasons, streak boosters, and mentor-led quests
+                    </h3>
                       <p className="max-w-2xl text-sm text-slate-700 font-medium relative z-10">
                         Experience Acceptopia's living world where fresh challenges, guild upgrades, and reward drops keep your application journey energized.
-                      </p>
-                      <Link
-                        to="/features"
+                    </p>
+                    <Link
+                      to="/features"
                         className="relative z-10 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-2xl shadow-purple-500/50 transition-all duration-300 hover:scale-[1.05] hover:shadow-purple-500/70"
                       >
                         <motion.span
@@ -751,12 +751,12 @@ const supportHighlights = [
                             repeat: Infinity, 
                             ease: "easeInOut" 
                           }}
-                        >
-                          Explore Full Feature Tour
+                    >
+                      Explore Full Feature Tour
                         </motion.span>
-                        <HiArrowRight className="h-4 w-4" />
-                      </Link>
-                    </div>
+                      <HiArrowRight className="h-4 w-4" />
+                    </Link>
+                  </div>
                   </motion.div>
                 </motion.div>
               </div>
@@ -884,10 +884,10 @@ const supportHighlights = [
                     const colors = colorSchemes[index % colorSchemes.length];
                     
                     return (
-                      <motion.article
-                        key={item.id}
+                    <motion.article
+                      key={item.id}
                         initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         whileHover={{ y: -8, scale: 1.02 }}
@@ -914,15 +914,15 @@ const supportHighlights = [
                                 whileHover={{ scale: 1.1, rotate: 5 }}
                                 className={`flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg ${colors.number} font-semibold text-sm sm:text-base shadow-lg`}
                               >
-                                {String(index + 1).padStart(2, '0')}
+                              {String(index + 1).padStart(2, '0')}
                               </motion.div>
                               <motion.span 
                                 whileHover={{ scale: 1.05 }}
                                 className={`inline-flex items-center gap-1.5 rounded-full ${colors.badge} px-3 py-1 text-[10px] sm:text-xs font-medium uppercase tracking-wider border`}
                               >
-                                {item.badge}
+                              {item.badge}
                               </motion.span>
-                            </div>
+                          </div>
                           </div>
                           <div className="flex flex-col gap-3 flex-grow relative z-10">
                             <h3 className={`text-lg sm:text-xl font-semibold text-slate-900 leading-tight transition-colors duration-300 ${headingFont}`} style={{ color: 'inherit' }}>
@@ -949,9 +949,9 @@ const supportHighlights = [
                                 <HiArrowRight className="w-3 h-3" />
                               </motion.div>
                             </motion.div>
-                          </div>
                         </div>
-                      </motion.article>
+                      </div>
+                    </motion.article>
                     );
                   })}
                 </div>
@@ -1044,7 +1044,7 @@ const supportHighlights = [
                         </motion.div>
                         <div className="text-xs font-medium uppercase tracking-wide text-slate-600">
                           {metric.label}
-                        </div>
+                      </div>
                       </motion.div>
                     ))}
                   </div>
@@ -1071,7 +1071,7 @@ const supportHighlights = [
                         <p className="text-xs sm:text-sm font-semibold bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
                           — Jordan P., Stanford Admit
                         </p>
-                      </div>
+                  </div>
                     </div>
                   </motion.div>
                 </div>
@@ -1184,12 +1184,12 @@ const supportHighlights = [
                   const colors = colorSchemes[index % colorSchemes.length];
                   
                   return (
-                    <motion.article
-                      key={resource.id}
-                      initial={{ opacity: 0, y: 28 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.55, delay: index * 0.08 }}
+                  <motion.article
+                    key={resource.id}
+                    initial={{ opacity: 0, y: 28 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.55, delay: index * 0.08 }}
                       whileHover={{ y: -10, scale: 1.02 }}
                       className="group relative"
                     >
@@ -1215,21 +1215,21 @@ const supportHighlights = [
                           whileHover={{ scale: 1.05 }}
                           className={`inline-flex items-center rounded-full ${colors.badge} px-3 py-1 text-[11px] font-semibold tracking-[0.28em] uppercase shadow-md relative z-10`}
                         >
-                          {resource.callout}
+                      {resource.callout}
                         </motion.span>
                         <h3 className={`text-xl font-semibold text-slate-900 relative z-10 ${headingFont}`}>{resource.title}</h3>
                         <p className="text-sm text-slate-600 leading-relaxed relative z-10">{resource.description}</p>
                         <div className="flex flex-col gap-2 relative z-10">
                           {resource.highlights.map((item, idx) => (
                             <motion.div
-                              key={item}
+                          key={item}
                               initial={{ opacity: 0, x: -10 }}
                               whileInView={{ opacity: 1, x: 0 }}
                               viewport={{ once: true }}
                               transition={{ duration: 0.4, delay: 0.3 + idx * 0.1 }}
                               whileHover={{ scale: 1.02, x: 4 }}
                               className={`flex items-center gap-2 rounded-xl border-2 ${colors.border} bg-gradient-to-r ${colors.highlight} px-3 py-2 text-xs font-semibold uppercase tracking-[0.25em] ${colors.text} cursor-pointer transition-all duration-300`}
-                            >
+                        >
                               <motion.span 
                                 animate={{ scale: [1, 1.2, 1] }}
                                 transition={{ 
@@ -1240,17 +1240,17 @@ const supportHighlights = [
                                 }}
                                 className={`h-2 w-2 rounded-full bg-gradient-to-r ${colors.dot}`}
                               />
-                              {item}
+                          {item}
                             </motion.div>
-                          ))}
-                        </div>
+                      ))}
+                    </div>
                         <div className="mt-auto pt-4 border-t border-slate-200 relative z-10">
                           <span className="text-xs font-medium uppercase tracking-[0.3em] text-slate-500">
-                            Preview Only · Full Access After Sign Up
-                          </span>
+                        Preview Only · Full Access After Sign Up
+                      </span>
                         </div>
-                      </div>
-                    </motion.article>
+                    </div>
+                  </motion.article>
                   );
                 })}
               </div>
@@ -1278,14 +1278,14 @@ const supportHighlights = [
                       ease: "easeInOut" 
                     }}
                     className="relative z-10"
-                  >
-                    View Complete Library
+                >
+                  View Complete Library
                   </motion.span>
                   <motion.div
                     whileHover={{ x: 4 }}
                     className="relative z-10"
                   >
-                    <HiArrowRight className="h-4 w-4" />
+                  <HiArrowRight className="h-4 w-4" />
                   </motion.div>
                 </Link>
               </motion.div>

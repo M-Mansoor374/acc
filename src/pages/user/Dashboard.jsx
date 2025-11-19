@@ -16,11 +16,11 @@ import {
   HiArrowRight,
   HiChartBar
 } from 'react-icons/hi';
-import Header from '../login/Header';
-import DashboardStats from '../components/DashboardStats/DashboardStats';
-import QuickLinkCard from '../components/QuickLinkCard';
-import ActivityItem from '../components/ActivityItem';
-import Footer from '../components/Footer';
+import Header from '../../login/Header';
+import DashboardStats from '../../components/DashboardStats/DashboardStats';
+import QuickLinkCard from '../../components/QuickLinkCard';
+import ActivityItem from '../../components/ActivityItem';
+import Footer from '../../components/Footer';
 
 const Dashboard = memo(() => {
   const navigate = useNavigate();

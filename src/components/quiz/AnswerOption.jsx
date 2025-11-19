@@ -2,7 +2,7 @@ import React, { memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 
-const AnswerOptionComponent = ({ option, isSelected, isRevealed, onSelect }) => {
+const AnswerOptionComponent = ({ option, isSelected = false, isRevealed = false, onSelect }) => {
   const variant = useMemo(() => {
     if (!isRevealed) {
       return 'default';
@@ -76,11 +76,6 @@ AnswerOptionComponent.propTypes = {
   isSelected: PropTypes.bool,
   isRevealed: PropTypes.bool,
   onSelect: PropTypes.func.isRequired,
-};
-
-AnswerOptionComponent.defaultProps = {
-  isSelected: false,
-  isRevealed: false,
 };
 
 export const AnswerOption = memo(AnswerOptionComponent);
