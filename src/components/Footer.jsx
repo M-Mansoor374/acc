@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
@@ -11,28 +11,28 @@ import { HiStar } from 'react-icons/hi';
 
 const Footer = memo(() => {
   const productLinks = [
-    { name: 'Features', path: '/features' },
+    { name: 'Features', path: '/#features' },
     { name: 'Dashboard', path: '/dashboard' },
     { name: 'Quiz', path: '/quiz' },
-    { name: 'Rewards', path: '/rewards' },
+    { name: 'Rewards', path: '/resources' },
   ];
 
   const companyLinks = [
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
-    { name: 'Blog', path: '/blog' },
+    { name: 'About', path: '/#about' },
+    { name: 'Contact', path: '/#support' },
+    { name: 'Blog', path: '/resources' },
   ];
 
   const resourceLinks = [
     { name: 'Resources', path: '/resources' },
-    { name: 'Help Center', path: '/help' },
-    { name: 'Community', path: '/community' },
+    { name: 'Help Center', path: '/portal' },
+    { name: 'Community', path: '/simulation' },
   ];
 
   const legalLinks = [
-    { name: 'Privacy', path: '/privacy' },
-    { name: 'Terms', path: '/terms' },
-    { name: 'Security', path: '/security' },
+    { name: 'Privacy', path: '/legal/privacy' },
+    { name: 'Terms', path: '/legal/terms' },
+    { name: 'Security', path: '/legal/security' },
   ];
 
   const socialLinks = [
@@ -62,21 +62,17 @@ const Footer = memo(() => {
     },
   ];
 
-  const handleSocialClick = useCallback((url) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  }, []);
-
   const renderLinkColumn = (title, links) => (
     <div className="flex flex-col">
-      <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">
+      <h3 className="text-xs sm:text-sm font-semibold text-white mb-3 sm:mb-4 uppercase tracking-wider">
         {title}
       </h3>
-      <ul className="flex flex-col gap-3">
+      <ul className="flex flex-col gap-2 sm:gap-3">
         {links.map((link) => (
           <li key={link.path}>
             <Link
               to={link.path}
-              className="text-sm text-gray-400 hover:text-gray-200 transition-all duration-200 hover:underline inline-block"
+              className="text-xs sm:text-sm text-gray-400 hover:text-gray-200 transition-all duration-200 hover:underline inline-block"
               aria-label={link.name}
             >
               {link.name}
@@ -97,22 +93,22 @@ const Footer = memo(() => {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="py-10 sm:py-12 lg:py-14">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-8 relative z-10">
+        <div className="py-8 sm:py-10 md:py-12 lg:py-14">
+          <div className="flex flex-col lg:flex-row gap-8 sm:gap-10 md:gap-12 lg:gap-12 xl:gap-16">
             {/* Brand Section - Left Side */}
-            <div className="flex flex-col gap-4 text-center lg:text-left lg:flex-shrink-0 lg:w-80 xl:w-96">
-              <div className="flex items-center justify-center lg:justify-start gap-3">
+            <div className="flex flex-col gap-3 sm:gap-4 text-center lg:text-left lg:flex-shrink-0 lg:w-80 xl:w-96">
+              <div className="flex items-center justify-center lg:justify-start gap-2 sm:gap-3">
                 <motion.div
                   whileHover={{ rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
                   className="relative"
                 >
                   <svg
-                    width="48"
-                    height="48"
+                    width="40"
+                    height="40"
                     viewBox="0 0 48 48"
-                    className="drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]"
+                    className="sm:w-12 sm:h-12 drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]"
                   >
                     {/* Hexagon */}
                     <polygon
@@ -136,7 +132,7 @@ const Footer = memo(() => {
                 </motion.div>
                 <Link 
                   to="/" 
-                  className="text-2xl sm:text-3xl font-bold relative"
+                  className="text-xl sm:text-2xl md:text-3xl font-bold relative"
                   aria-label="Acceptopia Home"
                 >
                   <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]">
@@ -148,37 +144,33 @@ const Footer = memo(() => {
                 </Link>
               </div>
 
-              <h3 className="text-lg sm:text-xl font-semibold text-white">
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold text-white px-2 sm:px-0">
                 Gamify Your Learning Journey
               </h3>
 
-              <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base text-gray-400 leading-relaxed px-2 sm:px-0">
                 Transforming education through gamification, real-time progress tracking, and rewarding achievements. Join the future of learning today.
               </p>
 
-              <div className="flex items-center justify-center lg:justify-start gap-3 pt-2">
+              <div className="flex items-center justify-center lg:justify-start gap-2 sm:gap-3 pt-1 sm:pt-2">
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon;
                   return (
                     <motion.a
                       key={social.name}
                       href={social.url}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleSocialClick(social.url);
-                      }}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: index * 0.1 }}
                       whileHover={{ scale: 1.1, y: -3 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 transition-all duration-300 hover:opacity-80 ${social.color}`}
+                      className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 transition-all duration-300 hover:opacity-80 ${social.color}`}
                       aria-label={`Follow us on ${social.name}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <IconComponent className="w-5 h-5" aria-hidden="true" />
+                      <IconComponent className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
                     </motion.a>
                   );
                 })}
@@ -186,28 +178,28 @@ const Footer = memo(() => {
             </div>
 
             {/* Navigation Links - Right Side */}
-            <div className="flex-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
-              <div className="text-center md:text-left">
+            <div className="flex-1 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-6 md:gap-6 lg:gap-8">
+              <div className="text-center sm:text-center md:text-left">
                 {renderLinkColumn('PRODUCT', productLinks)}
               </div>
 
-              <div className="text-center md:text-left">
+              <div className="text-center sm:text-center md:text-left">
                 {renderLinkColumn('COMPANY', companyLinks)}
               </div>
 
-              <div className="text-center md:text-left">
+              <div className="text-center sm:text-center md:text-left">
                 {renderLinkColumn('RESOURCES', resourceLinks)}
               </div>
 
-              <div className="text-center md:text-left">
+              <div className="text-center sm:text-center md:text-left">
                 {renderLinkColumn('LEGAL', legalLinks)}
               </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-700/50 pt-6 pb-6 sm:pb-8">
-          <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4 text-sm text-gray-400">
+        <div className="border-t border-gray-700/50 pt-4 sm:pt-5 md:pt-6 pb-4 sm:pb-6 md:pb-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-3 sm:gap-4 text-xs sm:text-sm text-gray-400">
             <p className="text-center sm:text-left">
               © {new Date().getFullYear()} Acceptopia. All rights reserved.
             </p>

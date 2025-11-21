@@ -8,9 +8,13 @@ import { Profile } from './pages/user/Profile';
 import { PortalPage } from './pages/PortalPage';
 import { SignupPage } from './pages/SignupPage';
 import { Simulation } from './pages/user/Simulation';
+import { Privacy } from './pages/legal/Privacy';
+import { Terms } from './pages/legal/Terms';
+import { Security } from './pages/legal/Security';
 import AdminDashboard from './pages/admin/Dashboard';
 import AdminRoute from './components/AdminRoute';
 import ProtectedRoute from './components/ProtectedRoute';
+import FriendsGroup from './pages/admin/FriendsGroup';
 
 function App() {
   return (
@@ -67,11 +71,22 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/legal/privacy" element={<Privacy />} />
+        <Route path="/legal/terms" element={<Terms />} />
+        <Route path="/legal/security" element={<Security />} />
         <Route
           path="/admin"
           element={
             <AdminRoute>
               <AdminDashboard />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/friends-group"
+          element={
+            <AdminRoute>
+              <FriendsGroup />
             </AdminRoute>
           }
         />

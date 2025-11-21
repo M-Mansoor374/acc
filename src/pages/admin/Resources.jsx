@@ -96,11 +96,11 @@ const ResourcesComponent = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 px-4 py-6 sm:px-6 sm:py-8">
       {/* Header Actions */}
-      <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-        <div className="flex-1 flex flex-col sm:flex-row gap-4">
-          <div className="relative flex-1 max-w-md">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:flex-1">
+          <div className="relative flex-1 min-w-0 max-w-full sm:max-w-md">
             <HiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="text"
@@ -110,7 +110,7 @@ const ResourcesComponent = () => {
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
-          <div className="relative">
+          <div className="relative flex-shrink-0">
             <HiFilter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
             <select
               value={filterCategory}
@@ -128,7 +128,7 @@ const ResourcesComponent = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+          className="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 min-w-[210px]"
         >
           <HiPlus className="w-5 h-5 inline mr-2" />
           Upload Resource
@@ -136,7 +136,7 @@ const ResourcesComponent = () => {
       </div>
 
       {/* Resources Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {filteredResources.map((resource, index) => {
           const Icon = resource.icon;
           return (
@@ -146,7 +146,7 @@ const ResourcesComponent = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ scale: 1.02, y: -4 }}
-              className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-all"
+              className="bg-white rounded-2xl shadow-xl border border-gray-200 p-5 hover:shadow-2xl transition-all flex flex-col h-full space-y-4"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
@@ -175,7 +175,7 @@ const ResourcesComponent = () => {
               </div>
 
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{resource.title}</h3>
-              <div className="space-y-2 mb-4">
+              <div className="space-y-2 mb-4 text-sm">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-gray-600">Category:</span>
                   <span className="font-medium text-gray-900">{resource.category}</span>
@@ -211,26 +211,26 @@ const ResourcesComponent = () => {
       )}
 
       {/* Stats Summary */}
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-        <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="bg-white rounded-2xl shadow-xl p-5 border border-gray-200">
           <p className="text-sm font-medium text-gray-600 mb-2">Total Resources</p>
-          <p className="text-3xl font-bold text-gray-900">{resources.length}</p>
+          <p className="text-[2.2rem] font-bold text-gray-900">{resources.length}</p>
         </div>
-        <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+        <div className="bg-white rounded-2xl shadow-xl p-5 border border-gray-200">
           <p className="text-sm font-medium text-gray-600 mb-2">Total Downloads</p>
-          <p className="text-3xl font-bold text-blue-600">
+          <p className="text-[2.2rem] font-bold text-blue-600">
             {resources.reduce((sum, r) => sum + r.downloads, 0).toLocaleString()}
           </p>
         </div>
-        <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+        <div className="bg-white rounded-2xl shadow-xl p-5 border border-gray-200">
           <p className="text-sm font-medium text-gray-600 mb-2">PDF Files</p>
-          <p className="text-3xl font-bold text-red-600">
+          <p className="text-[2.2rem] font-bold text-red-600">
             {resources.filter((r) => r.type === 'PDF').length}
           </p>
         </div>
-        <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+        <div className="bg-white rounded-2xl shadow-xl p-5 border border-gray-200">
           <p className="text-sm font-medium text-gray-600 mb-2">Videos</p>
-          <p className="text-3xl font-bold text-purple-600">
+          <p className="text-[2.2rem] font-bold text-purple-600">
             {resources.filter((r) => r.type === 'Video').length}
           </p>
         </div>
@@ -240,6 +240,9 @@ const ResourcesComponent = () => {
 };
 
 export default memo(ResourcesComponent);
+
+
+
 
 
 

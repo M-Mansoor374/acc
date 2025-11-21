@@ -1401,7 +1401,7 @@ const supportHighlights = [
         </section>
 
         {/* CTA Section */}
-        <section id="support" className="relative overflow-hidden py-16 sm:py-20 md:py-24">
+        <section id="support" className="relative overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24">
           <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900" />
           <div className="absolute inset-0">
             <div className="absolute -top-24 -left-24 h-56 w-56 rounded-full bg-sky-500/20 blur-3xl" />
@@ -1409,29 +1409,29 @@ const supportHighlights = [
             <div className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-indigo-500/20 blur-3xl" />
           </div>
 
-          <div className="container relative mx-auto px-6 sm:px-8 lg:px-12 text-white">
-            <div className="mx-auto flex max-w-6xl flex-col gap-10 sm:gap-12 lg:flex-row lg:items-center">
+          <div className="container relative mx-auto px-4 sm:px-6 md:px-8 lg:px-12 text-white">
+            <div className="mx-auto flex max-w-6xl flex-col gap-8 sm:gap-10 md:gap-12 lg:flex-row lg:items-center">
               <motion.div
                 initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="flex-1 space-y-5 sm:space-y-6"
+                className="flex-1 space-y-4 sm:space-y-5 md:space-y-6"
               >
-                <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white">
+                <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.35em] text-white">
                   Contact & Support
-                  <HiSparkles className="h-4 w-4 text-amber-300" />
+                  <HiSparkles className="h-3 w-3 sm:h-4 sm:w-4 text-amber-300" />
                 </span>
-                <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold leading-tight text-white ${headingFont}`}>
+                <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white px-1 ${headingFont}`}>
                   Enchanted help, right when you need it
                 </h2>
-                <p className="text-sm sm:text-base md:text-lg text-slate-200/90 leading-relaxed">
-                  Acceptopia’s support guild blends expert coaches, proactive guides, and a vibrant community so you’re never navigating the admissions adventure alone.
+                <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-200/90 leading-relaxed px-1">
+                  Acceptopia's support guild blends expert coaches, proactive guides, and a vibrant community so you're never navigating the admissions adventure alone.
                 </p>
-                <div className="flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.32em] text-slate-200">
-                  <span className="rounded-full border border-white/20 bg-white/10 px-4 py-2">Response <span className="text-emerald-300">under 24h</span></span>
-                  <span className="rounded-full border border-white/20 bg-white/10 px-4 py-2">Human-first support</span>
-                  <span className="rounded-full border border-white/20 bg-white/10 px-4 py-2">Global time zones</span>
+                <div className="flex flex-wrap gap-2 sm:gap-3 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] sm:tracking-[0.28em] md:tracking-[0.32em] text-slate-200">
+                  <span className="rounded-full border border-white/20 bg-white/10 px-3 sm:px-4 py-1.5 sm:py-2 whitespace-nowrap">Response <span className="text-emerald-300">under 24h</span></span>
+                  <span className="rounded-full border border-white/20 bg-white/10 px-3 sm:px-4 py-1.5 sm:py-2 whitespace-nowrap">Human-first support</span>
+                  <span className="rounded-full border border-white/20 bg-white/10 px-3 sm:px-4 py-1.5 sm:py-2 whitespace-nowrap">Global time zones</span>
                 </div>
               </motion.div>
 
@@ -1440,42 +1440,42 @@ const supportHighlights = [
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="flex-1 rounded-[34px] border border-white/15 bg-white/5 p-6 sm:p-8 shadow-2xl shadow-black/30 backdrop-blur-xl"
+                className="flex-1 rounded-2xl sm:rounded-3xl lg:rounded-[34px] border border-white/15 bg-white/5 p-4 sm:p-6 md:p-8 shadow-2xl shadow-black/30 backdrop-blur-xl"
               >
-                <div className="flex flex-col gap-6 sm:gap-7">
-                  <div className="flex items-center justify-between rounded-3xl border border-white/15 bg-white/10 px-5 py-4 shadow-inner shadow-black/20">
-                    <div className="flex items-center gap-3">
-                      <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 via-sky-500 to-purple-500 text-white shadow-lg shadow-indigo-900/40">
-                        <HiShieldCheck className="h-6 w-6" />
+                <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 lg:gap-7">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 rounded-2xl sm:rounded-3xl border border-white/15 bg-white/10 px-4 sm:px-5 py-3 sm:py-4 shadow-inner shadow-black/20">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <span className="inline-flex h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11 items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br from-indigo-500 via-sky-500 to-purple-500 text-white shadow-lg shadow-indigo-900/40 flex-shrink-0">
+                        <HiShieldCheck className="h-5 w-5 sm:h-6 sm:w-6" />
                       </span>
-                      <div>
-                        <p className={`text-sm font-semibold text-white ${headingFont}`}>Always-On Guidance</p>
-                        <p className="text-xs text-slate-200">Coaches, mentors, and peers ready to help.</p>
+                      <div className="min-w-0 flex-1">
+                        <p className={`text-xs sm:text-sm font-semibold text-white ${headingFont}`}>Always-On Guidance</p>
+                        <p className="text-[10px] sm:text-xs text-slate-200 leading-relaxed">Coaches, mentors, and peers ready to help.</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-200">
+                    <div className="flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-2.5 sm:px-3 py-1 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] sm:tracking-[0.28em] text-slate-200 self-start sm:self-auto">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                       Live
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                  <div className="grid grid-cols-1 gap-4 sm:gap-5 sm:grid-cols-2">
                     {supportHighlights.slice(0, 2).map(({ id, title, description, icon: Icon, accent, cta, href }) => (
                       <a
                         key={id}
                         href={href}
-                        className={`group relative flex flex-col gap-3 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-xl shadow-black/20 transition-transform duration-300 hover:-translate-y-1 hover:border-white/30`}
+                        className={`group relative flex flex-col gap-2.5 sm:gap-3 rounded-2xl sm:rounded-3xl border border-white/10 bg-white/5 p-4 sm:p-5 shadow-xl shadow-black/20 transition-transform duration-300 hover:-translate-y-1 hover:border-white/30`}
                         {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                       >
                         <div className={`absolute -top-16 right-0 h-32 w-32 rounded-full bg-gradient-to-br ${accent} blur-3xl opacity-60`} aria-hidden="true" />
-                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-white shadow-md shadow-black/20 backdrop-blur-sm group-hover:scale-105 transition-transform duration-300">
-                          <Icon className="h-5 w-5" />
+                        <span className="inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl sm:rounded-2xl bg-white/10 text-white shadow-md shadow-black/20 backdrop-blur-sm group-hover:scale-105 transition-transform duration-300 flex-shrink-0">
+                          <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
                         </span>
-                        <h3 className={`text-base font-semibold text-white ${headingFont}`}>{title}</h3>
-                        <p className="text-xs text-slate-200 leading-relaxed">{description}</p>
-                        <span className="mt-auto inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-200">
+                        <h3 className={`text-sm sm:text-base font-semibold text-white ${headingFont}`}>{title}</h3>
+                        <p className="text-[11px] sm:text-xs text-slate-200 leading-relaxed">{description}</p>
+                        <span className="mt-auto inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-slate-200">
                           {cta}
-                          <HiArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                          <HiArrowRight className="h-3 w-3 sm:h-3.5 sm:w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                         </span>
                       </a>
                     ))}
@@ -1485,27 +1485,27 @@ const supportHighlights = [
                     href={communityHighlight.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative flex items-center justify-between overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-purple-500/20 via-indigo-500/25 to-sky-500/20 px-6 py-5 shadow-xl shadow-black/25 transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl"
+                    className="group relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6 overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 bg-gradient-to-r from-purple-500/20 via-indigo-500/25 to-sky-500/20 px-4 sm:px-5 md:px-6 py-4 sm:py-5 shadow-xl shadow-black/25 transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl"
                   >
                     <div className="absolute inset-0 opacity-40">
                       <div className="absolute -left-10 top-0 h-32 w-32 rounded-full bg-purple-500/40 blur-3xl" />
                       <div className="absolute right-0 bottom-0 h-40 w-40 rounded-full bg-sky-500/35 blur-3xl" />
                     </div>
-                    <div className="relative flex items-center gap-4">
-                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-3xl bg-white/20 text-white shadow-lg shadow-indigo-900/40 backdrop-blur">
-                        <communityHighlight.icon className="h-6 w-6" />
+                    <div className="relative flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
+                      <span className="inline-flex h-10 w-10 sm:h-11 sm:w-11 md:h-12 md:w-12 items-center justify-center rounded-2xl sm:rounded-3xl bg-white/20 text-white shadow-lg shadow-indigo-900/40 backdrop-blur flex-shrink-0">
+                        <communityHighlight.icon className="h-5 w-5 sm:h-6 sm:w-6" />
                       </span>
-                      <div className="space-y-1">
-                        <p className={`text-sm font-semibold text-white ${headingFont}`}>{communityHighlight.title}</p>
-                        <p className="text-xs text-slate-100 leading-relaxed">{communityHighlight.description}</p>
+                      <div className="space-y-0.5 sm:space-y-1 min-w-0 flex-1">
+                        <p className={`text-xs sm:text-sm font-semibold text-white ${headingFont}`}>{communityHighlight.title}</p>
+                        <p className="text-[11px] sm:text-xs text-slate-100 leading-relaxed">{communityHighlight.description}</p>
                       </div>
                     </div>
-                    <span className="relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-white/90 px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.32em] text-slate-900 shadow-lg shadow-black/20 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-xl">
+                    <span className="relative inline-flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 overflow-hidden rounded-full bg-white/90 px-4 sm:px-5 py-2 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] sm:tracking-[0.28em] md:tracking-[0.32em] text-slate-900 shadow-lg shadow-black/20 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-xl whitespace-nowrap self-stretch sm:self-auto">
                       <span className="absolute inset-0 rounded-full border border-white/50" aria-hidden="true" />
                       <span className="absolute inset-0 rounded-full bg-gradient-to-r from-sky-500/15 via-indigo-500/20 to-purple-500/15 opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
                       <span className="relative">{communityHighlight.cta}</span>
-                      <span className="relative inline-flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-sky-500 via-indigo-500 to-purple-500 text-white shadow-md shadow-indigo-500/40">
-                        <HiArrowRight className="h-3.5 w-3.5" />
+                      <span className="relative inline-flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-gradient-to-br from-sky-500 via-indigo-500 to-purple-500 text-white shadow-md shadow-indigo-500/40">
+                        <HiArrowRight className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                       </span>
                     </span>
                   </a>

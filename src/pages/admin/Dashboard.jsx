@@ -367,10 +367,10 @@ const AdminDashboardComponent = () => {
       </motion.aside>
 
       {/* Main Content */}
-      <div className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'lg:ml-[280px]' : 'lg:ml-[80px]'}`}>
+      <div className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'lg:ml-[280px]' : 'lg:ml-[80px]'} pb-16 lg:pb-0`}>
         {/* Top Header */}
         <header className="sticky top-0 z-30 bg-white/10 backdrop-blur-xl border-b border-white/20 shadow-2xl">
-          <div className="flex items-center justify-between px-3 sm:px-4 lg:px-8 py-3 sm:py-4">
+          <div className="flex flex-wrap items-center gap-3 justify-between px-3 sm:px-4 lg:px-8 py-3 sm:py-4">
             <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
               <motion.button
                 whileHover={{ scale: 1.1 }}
@@ -419,7 +419,7 @@ const AdminDashboardComponent = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute right-0 mt-2 w-80 sm:w-96 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 max-h-[500px] overflow-hidden flex flex-col"
+                    className="absolute right-0 top-12 sm:top-14 mt-2 w-[min(90vw,22rem)] sm:w-96 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 max-h-[90vh] overflow-hidden flex flex-col"
                     >
                       {/* Header */}
                       <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
@@ -446,7 +446,7 @@ const AdminDashboardComponent = () => {
                       </div>
 
                       {/* Notifications List */}
-                      <div className="overflow-y-auto flex-1">
+                      <div className="overflow-y-auto flex-1 px-2">
                         {notifications.length === 0 ? (
                           <div className="p-8 text-center text-gray-500">
                             <HiBell className="w-12 h-12 mx-auto mb-3 text-gray-300" />
@@ -466,27 +466,27 @@ const AdminDashboardComponent = () => {
                                     : `${getNotificationColor(notification.type)} border-l-4`
                                 }`}
                               >
-                                <div className="flex items-start gap-3">
+                                <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
                                   <div className="flex-shrink-0 mt-0.5">
                                     {getNotificationIcon(notification.type)}
                                   </div>
                                   <div className="flex-1 min-w-0">
                                     <div className="flex items-start justify-between gap-2">
-                                      <h4
-                                        className={`text-sm font-semibold ${
-                                          notification.read ? 'text-gray-600' : 'text-gray-900'
-                                        }`}
-                                      >
-                                        {notification.title}
-                                      </h4>
+                                        <h4
+                                          className={`text-sm font-semibold ${
+                                            notification.read ? 'text-gray-600' : 'text-gray-900'
+                                          }`}
+                                        >
+                                          {notification.title}
+                                        </h4>
                                       {!notification.read && (
                                         <span className="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-1.5"></span>
                                       )}
                                     </div>
-                                    <p className="text-xs text-gray-600 mt-1 line-clamp-2">
+                                    <p className="text-[10px] sm:text-xs text-gray-600 mt-1 line-clamp-2">
                                       {notification.message}
                                     </p>
-                                    <p className="text-xs text-gray-400 mt-2">
+                                    <p className="text-[10px] sm:text-xs text-gray-400 mt-2">
                                       {notification.timestamp}
                                     </p>
                                   </div>
@@ -653,7 +653,7 @@ const AdminDashboardComponent = () => {
         </AnimatePresence>
 
         {/* Main Content Area */}
-        <main className="p-4 sm:p-6 lg:p-8">
+        <main className="p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8">
           <AnimatePresence mode="wait">
             {activeModule === 'overview' ? (
               <motion.div
@@ -664,13 +664,13 @@ const AdminDashboardComponent = () => {
                 transition={{ duration: 0.3 }}
                 className="space-y-6"
               >
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
                     whileHover={{ scale: 1.05, y: -8, rotate: 1 }}
-                    className="relative bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-white/20 overflow-hidden group"
+                    className="relative bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl p-4 sm:p-6 border border-white/20 overflow-hidden group"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-indigo-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="relative z-10">
@@ -693,7 +693,7 @@ const AdminDashboardComponent = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                     whileHover={{ scale: 1.05, y: -8, rotate: -1 }}
-                    className="relative bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-white/20 overflow-hidden group"
+                    className="relative bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl p-4 sm:p-6 border border-white/20 overflow-hidden group"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="relative z-10">
@@ -716,7 +716,7 @@ const AdminDashboardComponent = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
                     whileHover={{ scale: 1.05, y: -8, rotate: 1 }}
-                    className="relative bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-white/20 overflow-hidden group"
+                    className="relative bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl p-4 sm:p-6 border border-white/20 overflow-hidden group"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-teal-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="relative z-10">
@@ -739,7 +739,7 @@ const AdminDashboardComponent = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                     whileHover={{ scale: 1.05, y: -8, rotate: -1 }}
-                    className="relative bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-white/20 overflow-hidden group"
+                    className="relative bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl p-4 sm:p-6 border border-white/20 overflow-hidden group"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 to-orange-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="relative z-10">
@@ -762,13 +762,13 @@ const AdminDashboardComponent = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="relative bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl p-6 border border-white/20 overflow-hidden"
+                  className="relative bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl p-5 sm:p-6 border border-white/20 overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-pink-500/10" />
                   <h2 className="text-xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent mb-6 relative z-10">
                     Quick Actions
                   </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 relative z-10">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 relative z-10">
                     {adminNavItems
                       .filter((item) => item.id !== 'overview' && item.id !== 'settings')
                       .map((item, index) => {

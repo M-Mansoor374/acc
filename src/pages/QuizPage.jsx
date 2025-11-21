@@ -173,9 +173,9 @@ const QuizPageComponent = () => {
 
   if (quizState.status === 'failed') {
     mainContent = (
-      <main className="flex flex-1 items-center justify-center px-6 py-12">
-        <div className="max-w-lg rounded-3xl border border-rose-500/30 bg-rose-500/10 p-10 text-center text-rose-100 shadow-2xl shadow-rose-900/40">
-          <h1 className="mb-4 text-3xl font-bold">We hit a snag</h1>
+      <main className="flex flex-1 items-center justify-center px-4 py-10 sm:px-6 sm:py-12">
+        <div className="w-full max-w-lg rounded-3xl border border-rose-500/30 bg-rose-500/10 p-8 text-center text-rose-100 shadow-2xl shadow-rose-900/40 sm:p-10">
+          <h1 className="mb-3 text-2xl font-bold sm:text-3xl">We hit a snag</h1>
           <p className="mb-6 text-sm text-rose-200/80">{quizState.error}</p>
           <button
             type="button"
@@ -189,8 +189,8 @@ const QuizPageComponent = () => {
     );
   } else if (isSummaryVisible) {
     mainContent = (
-      <main className="flex flex-1 flex-col gap-10 px-6 py-12">
-        <section className="mx-auto flex w-full max-w-4xl flex-col gap-10">
+      <main className="flex flex-1 flex-col gap-8 px-4 py-10 sm:px-6 sm:py-12">
+        <section className="mx-auto flex w-full max-w-4xl flex-col gap-8 sm:gap-10">
           <QuizSummary
             xp={quizState.totalXp}
             medals={quizState.medals}
@@ -201,10 +201,10 @@ const QuizPageComponent = () => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8 shadow-xl shadow-indigo-950/40"
+            className="rounded-3xl border border-slate-800 bg-slate-900/60 p-5 shadow-xl shadow-indigo-950/40 sm:p-8"
           >
-            <h2 className="text-xl font-semibold text-white md:text-2xl">Question Breakdown</h2>
-            <ul className="mt-6 space-y-4">
+            <h2 className="text-lg font-semibold text-white sm:text-xl md:text-2xl">Question Breakdown</h2>
+            <ul className="mt-5 space-y-3">
               {summaryBreakdown.map((entry) => (
                 <li
                   key={entry.id}
@@ -242,8 +242,8 @@ const QuizPageComponent = () => {
     );
   } else if (quizState.status === 'loading' || !currentQuestion) {
     mainContent = (
-      <main className="flex flex-1 items-center justify-center px-6 py-12">
-        <div className="flex w-full max-w-2xl flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-900/70 p-10">
+      <main className="flex flex-1 items-center justify-center px-4 py-10 sm:px-6 sm:py-12">
+        <div className="flex w-full max-w-2xl flex-col gap-5 rounded-3xl border border-slate-800 bg-slate-900/70 p-8 sm:p-10">
           <div className="h-5 w-44 animate-pulse rounded-full bg-slate-700/70" />
           <div className="h-3 w-64 animate-pulse rounded-full bg-slate-800/80" />
           <div className="h-32 w-full animate-pulse rounded-2xl bg-slate-800/70" />
@@ -258,14 +258,14 @@ const QuizPageComponent = () => {
     const hintAvailable = Boolean(currentQuestion.hint);
 
     mainContent = (
-      <main className="flex flex-1 flex-col gap-10 px-6 py-10">
-        <section className="mx-auto flex w-full max-w-5xl flex-col gap-8 rounded-3xl border border-slate-800 bg-slate-900/60 p-8 shadow-2xl shadow-indigo-950/40">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+      <main className="flex flex-1 flex-col gap-8 px-4 py-8 sm:px-6 sm:py-10">
+        <section className="mx-auto flex w-full max-w-5xl flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-900/60 p-5 shadow-2xl shadow-indigo-950/40 sm:gap-8 sm:p-8">
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl space-y-3 text-left">
-              <span className="inline-flex items-center rounded-full bg-indigo-500/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-indigo-200">
+              <span className="inline-flex items-center rounded-full bg-indigo-500/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.32em] text-indigo-200">
                 Acceptopia Quiz Lab
               </span>
-              <h1 className="text-3xl font-bold text-white md:text-4xl">
+              <h1 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl">
                 Master one concept at a time, earn XP, and track your mastery.
               </h1>
               <p className="text-sm text-slate-300 md:text-base">
@@ -273,7 +273,7 @@ const QuizPageComponent = () => {
                 Stay focused, leverage hints when needed, and keep your streak alive.
               </p>
             </div>
-            <div className="grid w-full gap-4 sm:grid-cols-3">
+            <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-3">
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -315,7 +315,7 @@ const QuizPageComponent = () => {
           <QuizProgress current={progress.current} total={progress.total} xp={quizState.totalXp} />
         </section>
 
-        <div className="mx-auto grid w-full max-w-5xl gap-8 lg:grid-cols-[minmax(0,1.75fr)_minmax(0,1fr)]">
+        <div className="mx-auto grid w-full max-w-5xl gap-6 lg:grid-cols-[minmax(0,1.75fr)_minmax(0,1fr)] lg:gap-8">
           <AnimatePresence mode="wait">
             <motion.section
               key={currentQuestion.id}
@@ -324,9 +324,9 @@ const QuizPageComponent = () => {
               animate="visible"
               exit="exit"
               transition={{ duration: 0.4, ease: 'easeInOut' }}
-              className="flex flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-900/70 p-8 shadow-2xl shadow-slate-950/40 backdrop-blur-xl"
+              className="flex flex-col gap-5 rounded-3xl border border-slate-800 bg-slate-900/70 p-5 shadow-2xl shadow-slate-950/40 backdrop-blur-xl sm:gap-6 sm:p-8"
             >
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center gap-2.5 text-xs">
                 <span className="inline-flex items-center rounded-full bg-slate-800/80 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-200">
                   Topic: {currentQuestion.topic}
                 </span>
@@ -345,12 +345,12 @@ const QuizPageComponent = () => {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, ease: 'easeOut' }}
-                className="text-2xl font-semibold text-white md:text-3xl"
+                className="text-xl font-semibold text-white sm:text-2xl md:text-3xl"
               >
                 {currentQuestion.prompt}
               </motion.h2>
 
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-3 sm:gap-4">
                 {questionOptions.map((option) => (
                   <AnswerOption
                     key={option.id}
@@ -362,8 +362,8 @@ const QuizPageComponent = () => {
                 ))}
               </div>
 
-              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div className="flex items-center gap-3">
+              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                <div className="flex flex-col gap-3 text-left md:flex-row md:items-center md:gap-3">
                   <button
                     type="button"
                     onClick={handleToggleHint}
@@ -404,11 +404,11 @@ const QuizPageComponent = () => {
                 )}
               </AnimatePresence>
 
-              <div className="rounded-2xl border border-slate-800/80 bg-slate-900/80 p-5">
+              <div className="rounded-2xl border border-slate-800/80 bg-slate-900/80 p-4 sm:p-5">
                 <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-300">
                   Quick Checklist
                 </h3>
-                <ul className="mt-3 space-y-2 text-sm text-slate-400">
+                <ul className="mt-2 space-y-2 text-sm text-slate-400">
                   <li>• Read the question twice and anchor on the primary objective.</li>
                   <li>• Evaluate each option for accuracy, clarity, and alignment with best practices.</li>
                   <li>• Use hints sparingly—build intuition for future production scenarios.</li>
@@ -423,7 +423,7 @@ const QuizPageComponent = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="flex flex-col gap-6"
           >
-            <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-xl shadow-slate-950/40">
+            <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/40 sm:p-6">
               <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-300">Session Stats</h3>
               <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
                 <div className="rounded-2xl border border-slate-800/60 bg-slate-900/80 p-3">
@@ -449,7 +449,7 @@ const QuizPageComponent = () => {
               </div>
             </div>
 
-            <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-xl shadow-slate-950/40">
+            <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/40 sm:p-6">
               <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-300">
                 Coming Up Next
               </h3>
@@ -475,7 +475,7 @@ const QuizPageComponent = () => {
               </ul>
             </div>
 
-            <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-xl shadow-slate-950/40">
+            <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/40 sm:p-6">
               <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-300">
                 Pro Tips from Acceptopia Coaches
               </h3>

@@ -19,7 +19,7 @@ const formatPublishedDate = (dateString) => {
 
 const FeaturedResourceComponent = ({ resource }) => (
   <motion.div
-    className="relative flex flex-col gap-6 overflow-hidden rounded-[32px] border border-indigo-500/30 bg-gradient-to-br from-indigo-500/20 via-slate-900 to-slate-950 p-8 shadow-2xl shadow-indigo-900/50 md:flex-row md:items-center"
+    className="relative flex flex-col gap-5 overflow-hidden rounded-[28px] border border-indigo-500/30 bg-gradient-to-br from-indigo-500/20 via-slate-900 to-slate-950 p-5 shadow-2xl shadow-indigo-900/50 sm:p-8 md:flex-row md:items-center md:gap-8"
     initial={{ opacity: 0, y: 24 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -29,23 +29,23 @@ const FeaturedResourceComponent = ({ resource }) => (
       <div className="absolute -right-16 bottom-0 h-64 w-64 rounded-full bg-sky-500 blur-3xl" />
     </div>
     <div className="flex-1 space-y-4">
-      <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.4em] text-white">
+      <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-white">
         Featured Drop
       </span>
       <div className="space-y-2">
-        <h2 className="text-3xl font-bold text-white md:text-4xl">{resource.title}</h2>
+        <h2 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl">{resource.title}</h2>
         <p className="max-w-2xl text-sm leading-relaxed text-slate-200 md:text-base">
           {resource.description}
         </p>
       </div>
-      <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-wide text-slate-200">
+      <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-200">
         <span className="rounded-full bg-white/10 px-3 py-1">{resource.format}</span>
         <span className="rounded-full bg-white/10 px-3 py-1">{resource.readingTime}</span>
         <span className="rounded-full bg-white/10 px-3 py-1">
           Engagement {resource.engagementScore}%
         </span>
       </div>
-      <div className="flex flex-wrap items-center gap-4 text-xs text-slate-200/80">
+      <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-200/80">
         <span>Curated by {resource.author}</span>
         <span>Published {formatPublishedDate(resource.publishedAt)}</span>
       </div>
@@ -68,7 +68,7 @@ const FeaturedResourceComponent = ({ resource }) => (
       rel={resource.link ? 'noopener noreferrer' : undefined}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.98 }}
-      className="inline-flex w-full max-w-[220px] items-center justify-center rounded-2xl bg-white/90 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-lg shadow-white/20 transition hover:bg-white"
+      className="inline-flex w-full min-h-[48px] items-center justify-center rounded-2xl bg-white/90 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-slate-900 shadow-lg shadow-white/20 transition hover:bg-white md:max-w-[220px]"
     >
       {resource.ctaLabel ?? 'Explore'}
     </motion.a>

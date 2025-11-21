@@ -77,11 +77,11 @@ const ResourcesPageComponent = () => {
   }, [activeCategory, searchQuery, sortOption]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950">
+    <div className="flex min-h-screen flex-col bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white">
       <Header />
-      <main className="flex flex-1 flex-col px-6 py-12">
-        <section className="mx-auto flex w-full max-w-6xl flex-col gap-12">
-          <div className="relative overflow-hidden rounded-[32px] border border-indigo-500/20 bg-gradient-to-br from-indigo-500/30 via-slate-900 to-slate-950 p-10 text-center shadow-2xl shadow-indigo-900/40">
+      <main className="flex flex-1 flex-col px-4 py-10 sm:px-6 sm:py-12">
+        <section className="mx-auto flex w-full max-w-6xl flex-col gap-10 sm:gap-12">
+          <div className="relative overflow-hidden rounded-[28px] border border-indigo-500/25 bg-gradient-to-br from-indigo-500/20 via-slate-900 to-slate-950 px-4 py-8 text-center shadow-2xl shadow-indigo-900/40 sm:px-8 sm:py-10">
             <div className="absolute inset-0 opacity-30">
               <div className="absolute -left-20 top-0 h-64 w-64 rounded-full bg-indigo-400 blur-3xl" />
               <div className="absolute right-0 bottom-0 h-80 w-80 rounded-full bg-sky-500 blur-3xl" />
@@ -90,7 +90,7 @@ const ResourcesPageComponent = () => {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="relative inline-flex items-center justify-center rounded-full bg-white/10 px-5 py-1 text-xs font-semibold uppercase tracking-[0.4em] text-white"
+              className="relative inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.35em] text-white"
             >
               Acceptopia Resource Vault
             </motion.span>
@@ -98,7 +98,7 @@ const ResourcesPageComponent = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="relative mt-6 text-3xl font-bold text-white md:text-5xl"
+              className="relative mt-5 text-2xl font-bold text-white sm:text-3xl md:text-5xl"
             >
               Strategic tools, expert playbooks, and community drops — curated weekly by our coaches.
             </motion.h1>
@@ -106,7 +106,7 @@ const ResourcesPageComponent = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative mx-auto mt-6 max-w-3xl text-sm text-slate-200 md:text-base"
+              className="relative mx-auto mt-5 max-w-3xl text-sm leading-relaxed text-slate-200 sm:text-base"
             >
               Build momentum with high-impact resources spanning admissions strategy, productivity,
               scholarship funding, and community accountability. Filter, sort, and save your
@@ -114,19 +114,19 @@ const ResourcesPageComponent = () => {
             </motion.p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4">
             {metrics.map((metric, index) => (
               <motion.div
                 key={metric.label}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 text-center shadow-xl shadow-slate-950/40"
+                className="rounded-2xl border border-slate-800/80 bg-slate-900/80 px-4 py-5 text-center shadow-xl shadow-slate-950/40 sm:rounded-3xl"
               >
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-400">
                   {metric.label}
                 </p>
-                <p className="mt-3 text-2xl font-bold text-white">{metric.value}</p>
+                <p className="mt-2 text-xl font-bold text-white sm:text-2xl">{metric.value}</p>
               </motion.div>
             ))}
           </div>
@@ -134,7 +134,7 @@ const ResourcesPageComponent = () => {
           {primaryFeatured && <FeaturedResource resource={primaryFeatured} />}
 
           <motion.div
-            className="flex flex-wrap items-center justify-between gap-4 rounded-3xl border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/40"
+            className="flex flex-col gap-4 rounded-3xl border border-slate-800 bg-slate-900/70 p-4 shadow-xl shadow-slate-950/40 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:p-5"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -144,7 +144,7 @@ const ResourcesPageComponent = () => {
                 <motion.button
                   key={category.id}
                   type="button"
-                  className={`rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-wide transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
+                  className={`rounded-full px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.25em] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
                     activeCategory === category.id
                       ? 'bg-white text-slate-900 shadow-lg shadow-indigo-500/30'
                       : 'bg-slate-800/70 text-slate-200 hover:bg-slate-700'
@@ -157,8 +157,8 @@ const ResourcesPageComponent = () => {
                 </motion.button>
               ))}
             </div>
-            <div className="flex flex-1 flex-wrap items-center justify-end gap-3">
-              <div className="relative flex-1 min-w-[220px] max-w-sm">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-1 sm:items-center sm:justify-end">
+              <div className="relative flex-1 min-w-[200px]">
                 <input
                   className="w-full rounded-2xl border border-slate-800 bg-slate-900/60 px-4 py-2 text-sm text-slate-100 placeholder:text-slate-400 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-950"
                   placeholder="Search resources..."
@@ -167,7 +167,7 @@ const ResourcesPageComponent = () => {
                 />
               </div>
               <select
-                className="min-w-[180px] rounded-2xl border border-slate-800 bg-slate-900/60 px-4 py-2 text-sm text-slate-100 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                className="rounded-2xl border border-slate-800 bg-slate-900/60 px-4 py-2 text-sm text-slate-100 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-950 sm:min-w-[180px]"
                 value={sortOption}
                 onChange={(event) => setSortOption(event.target.value)}
               >
@@ -178,7 +178,7 @@ const ResourcesPageComponent = () => {
             </div>
           </motion.div>
 
-          <motion.div layout className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+          <motion.div layout className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
             <AnimatePresence mode="sync">
               {filteredResources.length === 0 ? (
                 <motion.div

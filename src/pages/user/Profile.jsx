@@ -232,8 +232,8 @@ const ProfilePageComponent = () => {
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950">
       <Header />
-      <main className="flex flex-1 flex-col gap-10 px-6 py-12">
-        <section className="mx-auto flex w-full max-w-6xl flex-col gap-10">
+      <main className="flex flex-1 flex-col gap-6 sm:gap-8 md:gap-10 px-3 sm:px-4 md:px-6 py-6 sm:py-8 md:py-12">
+        <section className="mx-auto flex w-full max-w-6xl flex-col gap-6 sm:gap-8 md:gap-10">
           <ProfileHero
             profile={formState}
             xpPercent={xpPercent}
@@ -248,7 +248,7 @@ const ProfilePageComponent = () => {
 
           <div
             ref={formSectionRef}
-            className="grid gap-8 xl:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]"
+            className="grid gap-6 sm:gap-8 xl:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]"
           >
             <ProfileForm
               formState={formState}
@@ -265,15 +265,22 @@ const ProfilePageComponent = () => {
 
       <AnimatePresence>
         {saveStatus && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.3 }}
-            className="pointer-events-none fixed bottom-6 left-1/2 z-50 w-full max-w-sm -translate-x-1/2 rounded-2xl border border-indigo-400/40 bg-indigo-500/20 px-5 py-3 text-center text-sm font-semibold text-indigo-100 shadow-lg shadow-indigo-900/50 backdrop-blur-md"
-          >
-            {saveStatus}
-          </motion.div>
+          <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none sm:items-end sm:justify-center sm:pb-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.95 }}
+              transition={{ duration: 0.3 }}
+              className="w-[85%] sm:w-auto sm:max-w-sm rounded-lg sm:rounded-xl md:rounded-2xl border border-indigo-400/40 bg-indigo-500/20 px-3 sm:px-4 md:px-5 py-2.5 sm:py-2.5 md:py-3 text-center text-[11px] sm:text-xs md:text-sm font-semibold text-indigo-100 shadow-lg shadow-indigo-900/50 backdrop-blur-md"
+              style={{ 
+                maxWidth: '220px',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
+              }}
+            >
+              <div className="break-words whitespace-normal leading-relaxed">{saveStatus}</div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
 

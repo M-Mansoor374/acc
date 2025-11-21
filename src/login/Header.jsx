@@ -8,6 +8,7 @@ const authedNavLinks = [
   { id: 'quizzes', label: 'Quizzes', path: '/quiz' },
   { id: 'simulation', label: 'Simulation', path: '/simulation' },
   { id: 'resources', label: 'Resources', path: '/resources' },
+  { id: 'friends-group', label: 'Group', path: '/admin/friends-group' },
 ];
 
 const LoginHeaderComponent = () => {
@@ -73,8 +74,11 @@ const LoginHeaderComponent = () => {
   const getActiveLink = () => {
     const { pathname } = location;
     if (pathname === '/dashboard' || pathname === '/') return 'Dashboard';
+    if (pathname === '/profile') return 'Profile';
     if (pathname === '/quiz') return 'Quizzes';
     if (pathname === '/simulation') return 'Simulation';
+    if (pathname === '/rewards') return 'Rewards';
+    if (pathname === '/admin/friends-group') return 'Group';
     if (pathname === '/resources') return 'Resources';
     return '';
   };
@@ -110,19 +114,19 @@ const LoginHeaderComponent = () => {
           : 'border-transparent bg-white/85 backdrop-blur-sm'
       }`}
     >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-14 sm:h-16 md:h-20 items-center justify-between gap-2 sm:gap-4 md:gap-6">
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-none items-center gap-2 sm:gap-3">
+      <nav className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex h-14 sm:h-16 md:h-20 items-center justify-between gap-1.5 sm:gap-2 md:gap-4 lg:gap-6 overflow-visible">
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex flex-none items-center gap-1.5 sm:gap-2 md:gap-3 min-w-0 flex-shrink-0">
             <motion.div
               whileHover={{ rotate: 360, scale: 1.1 }}
               transition={{ duration: 0.6 }}
               className="relative flex-shrink-0"
             >
               <svg
-                width="32"
-                height="32"
+                width="28"
+                height="28"
                 viewBox="0 0 48 48"
-                className="sm:w-10 sm:h-10 md:w-12 md:h-12 drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]"
+                className="sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]"
               >
                 <polygon
                   points="24,4 38,12 38,28 24,36 10,28 10,12"
@@ -144,7 +148,7 @@ const LoginHeaderComponent = () => {
             </motion.div>
             <Link
               to="/dashboard"
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold relative"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative truncate"
               aria-label="Acceptopia Dashboard"
             >
               <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]">
@@ -182,32 +186,35 @@ const LoginHeaderComponent = () => {
             ))}
           </div>
 
-          <div className="hidden flex-none items-center gap-2 sm:gap-3 pl-2 lg:flex">
+          <div className="flex flex-none items-center gap-1.5 sm:gap-2 md:gap-3 pl-1 sm:pl-2">
+            {/* Theme Toggle Button - Visible on all screens */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleThemeToggle}
-              className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-sky-100/60 bg-white/80 px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.3em] text-slate-500 shadow-sm shadow-sky-200/60 transition-colors duration-200 hover:bg-white"
+              className="inline-flex items-center justify-center gap-1 sm:gap-1.5 md:gap-2 rounded-full border border-sky-100/60 bg-white/80 px-2 sm:px-2.5 md:px-3 lg:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.3em] text-slate-500 shadow-sm shadow-sky-200/60 transition-colors duration-200 hover:bg-white h-8 w-8 sm:h-9 sm:w-9 md:h-auto md:w-auto flex-shrink-0 z-10"
+              aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
             >
               {theme === 'light' ? (
-                <HiOutlineMoon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-sky-500" />
+                <HiOutlineMoon className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-4 md:w-4 text-sky-500" />
               ) : (
-                <HiOutlineSun className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-amber-400" />
+                <HiOutlineSun className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-4 md:w-4 text-amber-400" />
               )}
               <span className="hidden xl:inline">{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
             </motion.button>
 
+            {/* Profile Button - Visible on all screens */}
             <div className="relative" ref={profileMenuRef}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsProfileMenuOpen((prev) => !prev)}
-                className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-gradient-to-r from-sky-500 via-indigo-500 to-blue-600 px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold uppercase tracking-[0.32em] text-white shadow-lg shadow-sky-300/40 transition-transform duration-200 hover:shadow-xl"
+                className="inline-flex items-center justify-center gap-1 sm:gap-1.5 md:gap-2 rounded-full bg-gradient-to-r from-sky-500 via-indigo-500 to-blue-600 px-2 sm:px-3 md:px-4 lg:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs md:text-sm font-semibold uppercase tracking-[0.2em] sm:tracking-[0.26em] md:tracking-[0.32em] text-white shadow-lg shadow-sky-300/40 transition-transform duration-200 hover:shadow-xl h-8 w-8 sm:h-9 sm:w-9 md:h-auto md:w-auto flex-shrink-0 z-10"
                 aria-haspopup="menu"
                 aria-expanded={isProfileMenuOpen}
               >
-                <HiOutlineUserCircle className="h-4 w-4 sm:h-5 sm:w-5" />
-                <span className="whitespace-nowrap">Profile</span>
+                <HiOutlineUserCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5" />
+                <span className="hidden md:inline whitespace-nowrap">Profile</span>
               </motion.button>
               <AnimatePresence>
                 {isProfileMenuOpen && (
@@ -216,12 +223,12 @@ const LoginHeaderComponent = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 6 }}
                     transition={{ duration: 0.18 }}
-                    className="absolute right-0 z-50 mt-3 w-52 overflow-hidden rounded-2xl border border-sky-100 bg-white/95 shadow-xl shadow-sky-200/40 backdrop-blur"
+                    className="absolute right-0 z-50 mt-2 sm:mt-3 w-48 sm:w-52 overflow-hidden rounded-xl sm:rounded-2xl border border-sky-100 bg-white/95 shadow-xl shadow-sky-200/40 backdrop-blur"
                     role="menu"
                   >
                     <Link
                       to="/profile"
-                      className="block px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-sky-50 hover:text-sky-600"
+                      className="block px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold text-slate-600 transition hover:bg-sky-50 hover:text-sky-600"
                       onClick={() => setIsProfileMenuOpen(false)}
                       role="menuitem"
                     >
@@ -229,7 +236,7 @@ const LoginHeaderComponent = () => {
                     </Link>
                     <Link
                       to="/profile"
-                      className="block px-4 py-3 text-sm font-semibold text-slate-600 transition hover:bg-sky-50 hover:text-sky-600"
+                      className="block px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold text-slate-600 transition hover:bg-sky-50 hover:text-sky-600"
                       onClick={() => setIsProfileMenuOpen(false)}
                       role="menuitem"
                     >
@@ -238,7 +245,7 @@ const LoginHeaderComponent = () => {
                     <button
                       type="button"
                       onClick={handleSignOut}
-                      className="flex w-full px-4 py-3 text-left text-sm font-semibold text-rose-500 transition hover:bg-rose-50 hover:text-rose-600"
+                      className="flex w-full px-3 sm:px-4 py-2.5 sm:py-3 text-left text-xs sm:text-sm font-semibold text-rose-500 transition hover:bg-rose-50 hover:text-rose-600"
                       role="menuitem"
                     >
                       Sign Out
@@ -247,16 +254,17 @@ const LoginHeaderComponent = () => {
                 )}
               </AnimatePresence>
             </div>
-          </div>
 
-          <button
-            onClick={toggleMobileMenu}
-            className="inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-sky-200 bg-white text-sky-600 transition hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-white lg:hidden"
-            aria-label="Toggle mobile menu"
-            aria-expanded={isMobileMenuOpen}
-          >
-            {isMobileMenuOpen ? <HiX className="h-5 w-5 sm:h-6 sm:w-6" /> : <HiMenu className="h-5 w-5 sm:h-6 sm:w-6" />}
-          </button>
+            {/* Mobile Menu Button - Mobile Only */}
+            <button
+              onClick={toggleMobileMenu}
+              className="inline-flex h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-sky-200 bg-white text-sky-600 transition hover:bg-sky-50 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-white lg:hidden flex-shrink-0 z-10"
+              aria-label="Toggle mobile menu"
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? <HiX className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" /> : <HiMenu className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />}
+            </button>
+          </div>
         </div>
 
         <AnimatePresence>
@@ -323,34 +331,154 @@ const LoginHeaderComponent = () => {
                   </button>
                 </div>
 
-                <div className="flex flex-1 flex-col gap-6 px-5 py-6">
-                  <div className="flex flex-col divide-y divide-sky-100 rounded-2xl border border-sky-100 bg-white">
-                    {authedNavLinks.map((link, index) => (
-                      <Link key={link.id} to={link.path} onClick={handleLinkClick}>
-                        <motion.div
+                <div className="flex flex-1 flex-col min-h-0">
+                  {/* Scrollable Menu Items */}
+                  <div className="flex-1 overflow-y-auto px-5 py-6">
+                    <div className="flex flex-col gap-3">
+                      {/* Dashboard */}
+                      <Link to="/dashboard" onClick={handleLinkClick} className="w-full">
+                        <motion.button
                           initial={{ opacity: 0, x: 24 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.05 }}
-                          className={`flex items-center justify-between gap-2 px-5 py-3 text-sm font-semibold transition-colors duration-150 ${
-                            activeLink === link.label ? 'text-sky-600' : 'text-slate-500 hover:text-sky-600'
+                          transition={{ delay: 0.05 }}
+                          className={`w-full flex items-center justify-between gap-2 px-4 py-4 rounded-xl text-base font-semibold transition-colors duration-150 border-2 ${
+                            activeLink === 'Dashboard' 
+                              ? 'bg-sky-50 text-sky-700 border-sky-300 shadow-md' 
+                              : 'bg-white text-slate-700 border-sky-200 hover:bg-sky-50 hover:text-sky-600 hover:border-sky-300'
                           }`}
                         >
-                          <span>{link.label}</span>
-                          <span
-                            className={`h-2 w-2 rounded-full transition ${
-                              activeLink === link.label ? 'bg-sky-500' : 'bg-sky-100'
-                            }`}
-                          />
-                        </motion.div>
+                          <span>Dashboard</span>
+                          <span className={`h-2.5 w-2.5 rounded-full ${activeLink === 'Dashboard' ? 'bg-sky-500' : 'bg-sky-100'}`} />
+                        </motion.button>
                       </Link>
-                    ))}
+
+                      {/* Profile */}
+                      <Link to="/profile" onClick={handleLinkClick} className="w-full">
+                        <motion.button
+                          initial={{ opacity: 0, x: 24 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.1 }}
+                          className={`w-full flex items-center justify-between gap-2 px-4 py-4 rounded-xl text-base font-semibold transition-colors duration-150 border-2 ${
+                            activeLink === 'Profile' 
+                              ? 'bg-sky-50 text-sky-700 border-sky-300 shadow-md' 
+                              : 'bg-white text-slate-700 border-sky-200 hover:bg-sky-50 hover:text-sky-600 hover:border-sky-300'
+                          }`}
+                        >
+                          <span>Profile</span>
+                          <span className={`h-2.5 w-2.5 rounded-full ${activeLink === 'Profile' ? 'bg-sky-500' : 'bg-sky-100'}`} />
+                        </motion.button>
+                      </Link>
+
+                      {/* Quizzes */}
+                      <Link to="/quiz" onClick={handleLinkClick} className="w-full">
+                        <motion.button
+                          initial={{ opacity: 0, x: 24 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.15 }}
+                          className={`w-full flex items-center justify-between gap-2 px-4 py-4 rounded-xl text-base font-semibold transition-colors duration-150 border-2 ${
+                            activeLink === 'Quizzes' 
+                              ? 'bg-sky-50 text-sky-700 border-sky-300 shadow-md' 
+                              : 'bg-white text-slate-700 border-sky-200 hover:bg-sky-50 hover:text-sky-600 hover:border-sky-300'
+                          }`}
+                        >
+                          <span>Quizzes</span>
+                          <span className={`h-2.5 w-2.5 rounded-full ${activeLink === 'Quizzes' ? 'bg-sky-500' : 'bg-sky-100'}`} />
+                        </motion.button>
+                      </Link>
+
+                      {/* Simulations */}
+                      <Link to="/simulation" onClick={handleLinkClick} className="w-full">
+                        <motion.button
+                          initial={{ opacity: 0, x: 24 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.2 }}
+                          className={`w-full flex items-center justify-between gap-2 px-4 py-4 rounded-xl text-base font-semibold transition-colors duration-150 border-2 ${
+                            activeLink === 'Simulation' 
+                              ? 'bg-sky-50 text-sky-700 border-sky-300 shadow-md' 
+                              : 'bg-white text-slate-700 border-sky-200 hover:bg-sky-50 hover:text-sky-600 hover:border-sky-300'
+                          }`}
+                        >
+                          <span>Simulations</span>
+                          <span className={`h-2.5 w-2.5 rounded-full ${activeLink === 'Simulation' ? 'bg-sky-500' : 'bg-sky-100'}`} />
+                        </motion.button>
+                      </Link>
+
+                      {/* Rewards */}
+                      <Link to="/rewards" onClick={handleLinkClick} className="w-full">
+                        <motion.button
+                          initial={{ opacity: 0, x: 24 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.25 }}
+                          className={`w-full flex items-center justify-between gap-2 px-4 py-4 rounded-xl text-base font-semibold transition-colors duration-150 border-2 ${
+                            activeLink === 'Rewards' 
+                              ? 'bg-sky-50 text-sky-700 border-sky-300 shadow-md' 
+                              : 'bg-white text-slate-700 border-sky-200 hover:bg-sky-50 hover:text-sky-600 hover:border-sky-300'
+                          }`}
+                        >
+                          <span>Rewards</span>
+                          <span className={`h-2.5 w-2.5 rounded-full ${activeLink === 'Rewards' ? 'bg-sky-500' : 'bg-sky-100'}`} />
+                        </motion.button>
+                      </Link>
+
+                      {/* Group */}
+                      <Link to="/admin/friends-group" onClick={handleLinkClick} className="w-full">
+                        <motion.button
+                          initial={{ opacity: 0, x: 24 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.3 }}
+                          className={`w-full flex items-center justify-between gap-2 px-4 py-4 rounded-xl text-base font-semibold transition-colors duration-150 border-2 ${
+                            activeLink === 'Group' 
+                              ? 'bg-sky-50 text-sky-700 border-sky-300 shadow-md' 
+                              : 'bg-white text-slate-700 border-sky-200 hover:bg-sky-50 hover:text-sky-600 hover:border-sky-300'
+                          }`}
+                        >
+                          <span>Group</span>
+                          <span className={`h-2.5 w-2.5 rounded-full ${activeLink === 'Group' ? 'bg-sky-500' : 'bg-sky-100'}`} />
+                        </motion.button>
+                      </Link>
+
+                      {/* Resources */}
+                      <Link to="/resources" onClick={handleLinkClick} className="w-full">
+                        <motion.button
+                          initial={{ opacity: 0, x: 24 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.35 }}
+                          className={`w-full flex items-center justify-between gap-2 px-4 py-4 rounded-xl text-base font-semibold transition-colors duration-150 border-2 ${
+                            activeLink === 'Resources' 
+                              ? 'bg-sky-50 text-sky-700 border-sky-300 shadow-md' 
+                              : 'bg-white text-slate-700 border-sky-200 hover:bg-sky-50 hover:text-sky-600 hover:border-sky-300'
+                          }`}
+                        >
+                          <span>Resources</span>
+                          <span className={`h-2.5 w-2.5 rounded-full ${activeLink === 'Resources' ? 'bg-sky-500' : 'bg-sky-100'}`} />
+                        </motion.button>
+                      </Link>
+
+                      {/* Settings */}
+                      <Link to="/profile" onClick={handleLinkClick} className="w-full">
+                        <motion.button
+                          initial={{ opacity: 0, x: 24 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.4 }}
+                          className="w-full flex items-center justify-between gap-2 px-4 py-4 rounded-xl text-base font-semibold transition-colors duration-150 border-2 bg-white text-slate-700 border-sky-200 hover:bg-sky-50 hover:text-sky-600 hover:border-sky-300"
+                        >
+                          <span>Settings</span>
+                          <span className="h-2.5 w-2.5 rounded-full bg-sky-100" />
+                        </motion.button>
+                      </Link>
+                    </div>
                   </div>
 
-                  <div className="flex flex-col gap-3">
+                  {/* Fixed Bottom Section */}
+                  <div className="p-5 border-t border-sky-200 bg-sky-50/50 space-y-3">
+                    {/* Theme Toggle */}
                     <motion.button
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.45 }}
                       whileTap={{ scale: 0.97 }}
                       onClick={handleThemeToggle}
-                      className="flex w-full items-center justify-center gap-2 rounded-full border border-sky-100 bg-white px-5 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-slate-600 shadow-sm shadow-sky-100 transition hover:bg-sky-50"
+                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-sky-100 bg-white px-5 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-slate-600 shadow-sm shadow-sky-100 transition hover:bg-sky-50"
                     >
                       {theme === 'light' ? (
                         <HiOutlineMoon className="h-5 w-5 text-sky-500" />
@@ -359,44 +487,22 @@ const LoginHeaderComponent = () => {
                       )}
                       {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
                     </motion.button>
-                    <div className="flex flex-col gap-2 rounded-3xl border border-sky-100 bg-white/80 p-4 shadow-lg shadow-sky-200/50">
-                      <h4 className="text-xs font-semibold uppercase tracking-[0.34em] text-slate-400">Account</h4>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          handleLinkClick();
-                          setIsProfileMenuOpen(false);
-                          navigate('/profile');
-                        }}
-                        className="flex items-center justify-between rounded-xl border border-transparent bg-sky-50 px-4 py-2 text-sm font-semibold text-sky-600 transition hover:border-sky-200 hover:bg-white"
-                      >
-                        View Profile
-                        <span className="text-xs">→</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          handleLinkClick();
-                          setIsProfileMenuOpen(false);
-                          navigate('/profile');
-                        }}
-                        className="flex items-center justify-between rounded-xl border border-transparent bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-500 transition hover:border-sky-200 hover:bg-white"
-                      >
-                        Edit Profile
-                        <span className="text-xs">→</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          handleLinkClick();
-                          handleSignOut();
-                        }}
-                        className="flex items-center justify-between rounded-xl border border-transparent bg-rose-50 px-4 py-2 text-sm font-semibold text-rose-500 transition hover:border-rose-200 hover:bg-white"
-                      >
-                        Sign Out
-                        <span className="text-xs">↗</span>
-                      </button>
-                    </div>
+
+                    {/* Logout Button */}
+                    <motion.button
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                      whileTap={{ scale: 0.97 }}
+                      onClick={() => {
+                        handleLinkClick();
+                        handleSignOut();
+                      }}
+                      className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-rose-500 to-red-600 px-5 py-4 text-base font-semibold text-white shadow-lg shadow-rose-300/40 transition hover:shadow-xl hover:scale-[1.02]"
+                    >
+                      <span>Logout</span>
+                      <span className="text-sm">↗</span>
+                    </motion.button>
                   </div>
                 </div>
               </motion.aside>

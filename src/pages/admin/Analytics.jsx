@@ -90,9 +90,9 @@ const AnalyticsComponent = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 px-4 py-6 sm:px-6 sm:py-8">
       {/* Main Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {statsCards.map((stat, index) => {
           const Icon = stat.icon;
           return (
@@ -102,7 +102,7 @@ const AnalyticsComponent = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ scale: 1.05, y: -4 }}
-              className="bg-white rounded-xl shadow-lg p-6 border border-gray-200"
+              className="bg-white rounded-2xl shadow-xl p-5 border border-gray-200/70 min-h-[170px]"
             >
               <div className="flex items-center justify-between mb-4">
                 <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${stat.color} flex items-center justify-center`}>
@@ -120,17 +120,17 @@ const AnalyticsComponent = () => {
                 </div>
               </div>
               <p className="text-sm font-medium text-gray-600 mb-1">{stat.title}</p>
-              <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
+              <p className="text-[2rem] font-bold text-gray-900">{stat.value}</p>
             </motion.div>
           );
         })}
       </div>
 
       {/* Activity Overview */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
           <h3 className="text-lg font-bold text-gray-900 mb-6">User Activity</h3>
-          <div className="space-y-6">
+          <div className="space-y-5">
             {activityStats.map((activity, index) => (
               <div key={activity.label}>
                 <div className="flex items-center justify-between mb-2">
@@ -154,7 +154,7 @@ const AnalyticsComponent = () => {
         <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
           <h3 className="text-lg font-bold text-gray-900 mb-6">Performance Metrics</h3>
           <div className="space-y-6">
-            <div className="flex items-center justify-between p-4 rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between p-4 rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-blue-500 flex items-center justify-center">
                   <HiChartBar className="w-5 h-5 text-white" />
@@ -166,7 +166,7 @@ const AnalyticsComponent = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-between p-4 rounded-lg bg-gradient-to-r from-green-50 to-emerald-50">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between p-4 rounded-lg bg-gradient-to-r from-green-50 to-emerald-50">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-green-500 flex items-center justify-center">
                   <HiTrendingUp className="w-5 h-5 text-white" />
@@ -178,7 +178,7 @@ const AnalyticsComponent = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-between p-4 rounded-lg bg-gradient-to-r from-purple-50 to-pink-50">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between p-4 rounded-lg bg-gradient-to-r from-purple-50 to-pink-50">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-purple-500 flex items-center justify-center">
                   <HiClock className="w-5 h-5 text-white" />
@@ -194,7 +194,7 @@ const AnalyticsComponent = () => {
       </div>
 
       {/* Content Statistics */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
           <div className="flex items-center gap-4 mb-4">
             <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
@@ -236,6 +236,9 @@ const AnalyticsComponent = () => {
 };
 
 export default memo(AnalyticsComponent);
+
+
+
 
 
 
