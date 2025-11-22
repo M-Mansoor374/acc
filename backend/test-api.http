@@ -1,0 +1,135 @@
+### Backend API Tests
+### Use this file with REST Client extension in VS Code
+### Or copy the requests to Postman/Thunder Client
+
+@baseURL = http://localhost:5000
+@token = YOUR_TOKEN_HERE
+
+### Health Check
+GET {{baseURL}}
+
+### ==================== AUTH ENDPOINTS ====================
+
+### 1️⃣ Signup - Create New User
+POST {{baseURL}}/api/auth/signup
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123",
+  "role": "student"
+}
+
+### 1️⃣b Signup - Teacher
+POST {{baseURL}}/api/auth/signup
+Content-Type: application/json
+
+{
+  "name": "Jane Teacher",
+  "email": "teacher@example.com",
+  "password": "teacher123",
+  "role": "teacher"
+}
+
+###
+
+### 2️⃣ Login - Get JWT Token
+POST {{baseURL}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+###
+
+### 3️⃣ Get Current User Profile (Protected Route)
+GET {{baseURL}}/api/auth/me
+Authorization: Bearer {{token}}
+
+###
+
+### 4️⃣ Update Profile (Protected Route)
+PUT {{baseURL}}/api/auth/update-profile
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "John Updated"
+}
+
+###
+
+### 5️⃣ Forgot Password - Request OTP
+POST {{baseURL}}/api/auth/forgot-password
+Content-Type: application/json
+
+{
+  "email": "john@example.com"
+}
+
+###
+
+### 6️⃣ Reset Password - With OTP
+POST {{baseURL}}/api/auth/reset-password
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "otp": "123456",
+  "newPassword": "newpassword123"
+}
+
+###
+
+### ==================== ERROR TESTS ====================
+
+### ❌ Login with Wrong Password
+POST {{baseURL}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "wrongpassword"
+}
+
+###
+
+### ❌ Signup with Existing Email
+POST {{baseURL}}/api/auth/signup
+Content-Type: application/json
+
+{
+  "name": "Another User",
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+###
+
+### ❌ Access Protected Route Without Token
+GET {{baseURL}}/api/auth/me
+
+###
+
+### ❌ Reset Password with Invalid OTP
+POST {{baseURL}}/api/auth/reset-password
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "otp": "000000",
+  "newPassword": "newpass123"
+}
+
+###
+
+### ==================== NOTES ====================
+# 1. After successful login, copy the token from response
+# 2. Replace {{token}} at the top with your actual JWT token
+# 3. For protected routes, token must be in format: Bearer <token>
+# 4. Check your email for OTP when testing forgot password
+# 5. OTP expires in 10 minutes by default
+

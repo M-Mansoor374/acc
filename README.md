@@ -1,78 +1,77 @@
-# Acceptopia - React + Vite + Tailwind CSS
+# Acceptopia - Main Application
 
-A modern, responsive frontend application built with React, Vite, Tailwind CSS, and Framer Motion.
-
-## 🚀 Quick Start
-
-### Prerequisites
-- Node.js (v16 or higher)
-- npm or yarn
-
-### Installation
-
-1. Install dependencies:
-```bash
-npm install
-```
-
-2. Start the development server:
-```bash
-npm run dev
-```
-
-3. Open your browser and navigate to `http://localhost:5173`
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-### Preview Production Build
-
-```bash
-npm run preview
-```
+Full-stack application with separate frontend and backend.
 
 ## 📁 Project Structure
 
 ```
 acc/
-├── src/
-│   ├── components/
-│   │   └── Header.jsx      # Header/Navbar component
-│   ├── App.jsx             # Main App component
-│   ├── main.jsx            # React entry point
-│   └── index.css           # Tailwind CSS imports
-├── index.html              # HTML entry point
-├── package.json            # Dependencies
-├── vite.config.js          # Vite configuration
-├── tailwind.config.js      # Tailwind CSS configuration
-└── postcss.config.js       # PostCSS configuration
+├── frontend/          # React frontend (Vite + Tailwind)
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── features/
+│   │   ├── store/
+│   │   └── data/
+│   ├── package.json
+│   └── vite.config.js
+│
+└── backend/          # Backend API (To be implemented)
+    └── (Your backend code here)
 ```
 
-## 🛠️ Technologies
+## 🚀 Frontend Development
 
-- **React 18** - UI library
-- **Vite** - Build tool and dev server
-- **Tailwind CSS** - Utility-first CSS framework
-- **Framer Motion** - Animation library
-- **React Icons** - Icon library
+### Install Dependencies
+```bash
+cd frontend
+npm install
+```
 
-## 📝 Features
+### Run Development Server
+```bash
+cd frontend
+npm run dev
+```
+Server runs on: `http://localhost:5173`
 
-- ✅ Responsive Header/Navbar component
-- ✅ Smooth animations with Framer Motion
-- ✅ Mobile-first design
-- ✅ Dark/Light mode ready
-- ✅ Accessible (ARIA labels, focus states)
+### Build for Production
+```bash
+cd frontend
+npm run build
+```
+Output: `frontend/dist/`
 
-## 🎨 Customization
+## 🔧 Backend Development
 
-The Header component can be customized by editing:
-- `src/components/Header.jsx` - Component logic and structure
-- `tailwind.config.js` - Theme colors and settings
+Backend folder is ready for your API implementation.
 
-## 📄 License
+Recommended tech stacks:
+- **Node.js + Express** (JavaScript/TypeScript)
+- **Python + Flask/FastAPI** (Python)
+- **Java + Spring Boot** (Java)
+- **Go + Gin/Echo** (Go)
 
-MIT
+## 🌐 Deployment
+
+**Frontend:** Deploy `frontend/dist/` to static hosting  
+**Backend:** Deploy backend to your preferred platform
+
+Recommended domains:
+- Frontend: `app.acceptopia.com`
+- Backend API: `api.acceptopia.com`
+
+## 📖 Full Documentation
+
+See main `README.md` in the project root for complete details.
+
+## 🔐 Environment Variables
+
+Create `.env` files in respective folders:
+- `frontend/.env` for frontend config
+- `backend/.env` for backend config
+
+---
+
+**Ready to start backend development!** 🚀
+

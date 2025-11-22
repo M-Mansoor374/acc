@@ -1,0 +1,124 @@
+═══════════════════════════════════════════════════════
+    ACCEPTOPIA FRONTEND - QUICK REFERENCE
+═══════════════════════════════════════════════════════
+
+📁 PROJECT STRUCTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+acceptopia/
+├── README.md              ← READ THIS FIRST!
+├── acc/
+│   ├── frontend/          ← User App Frontend (Port 5173)
+│   └── backend/           ← Backend API (Ready for implementation)
+└── admin-portal/          ← Admin App (Port 5174)
+
+
+🚀 QUICK START COMMANDS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Main App Frontend:
+  cd acc/frontend
+  npm install
+  npm run dev              → http://localhost:5173
+
+Admin Portal:
+  cd admin-portal
+  npm install
+  npm run dev              → http://localhost:5174
+
+
+📦 BUILD FOR PRODUCTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Main App Frontend:
+  cd acc/frontend && npm run build
+  → Output: acc/frontend/dist/
+
+Admin Portal:
+  cd admin-portal && npm run build
+  → Output: admin-portal/dist/
+
+
+🌐 DEPLOYMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Main App:        app.acceptopia.com
+Admin Portal:    admin.acceptopia.com
+
+Deploy with Vercel:
+  vercel --prod
+
+
+📂 KEY FILES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Main App (acc/frontend/src/):
+  ├── App.jsx                    → Main routing
+  ├── pages/PortalPage.jsx       → User login
+  ├── pages/user/Dashboard.jsx   → Student dashboard
+  └── components/ProtectedRoute.jsx → Auth guard
+
+Backend (acc/backend/):
+  └── README.md                  → Setup guide for backend API
+
+Admin Portal (admin-portal/src/):
+  ├── App.jsx                    → Admin routing
+  ├── pages/AdminLogin.jsx       → Admin login
+  ├── pages/Dashboard.jsx        → Admin dashboard
+  ├── pages/Users.jsx            → User management
+  ├── pages/Analytics.jsx        → Analytics
+  ├── pages/Announcements.jsx    → Announcements
+  ├── pages/Resources.jsx        → Resources
+  └── pages/Simulations.jsx      → Simulations
+
+
+🔐 SESSION STORAGE KEYS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Main App:
+  - acceptopia-authenticated
+  - acceptopia-role
+
+Admin Portal:
+  - acceptopia-admin-authenticated
+  - acceptopia-admin-role
+
+
+🛠️ TECH STACK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+React 18
+Vite
+Tailwind CSS
+React Router DOM v7
+Redux Toolkit
+Framer Motion
+React Icons
+
+
+⚠️ BEFORE PRODUCTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Replace mock authentication with real API
+✅ Implement JWT tokens
+✅ Enable HTTPS (SSL/TLS)
+✅ Add rate limiting
+✅ Set up 2FA for admin
+✅ Configure CORS properly
+
+
+📖 FULL DOCUMENTATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+See README.md for complete details on:
+- Architecture
+- Deployment options
+- Security features
+- API integration
+- Testing guidelines
+
+
+═══════════════════════════════════════════════════════
+Keep this file handy for quick reference!
+═══════════════════════════════════════════════════════
+
